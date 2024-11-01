@@ -27,19 +27,19 @@ class userDAO :
     # 사용자 인증
     def authenicate(self, useremail, password):
         cursor = UserDBConnect.get_db().cursor()
-        sql = 'SELECT passwd FROM login WHERE email=%s'
-        cursor.execute(sql,(useremail,))
-        saved_password = cursor.fetchone()[0]
+        sql = 'SELECT * FROM login WHERE email=%s AND passwd=%s'
         UserDBConnect.get_db().close()
-        if password == saved_password:
-            return True
-        return False
+        cursor.execute(sql,(useremail,password))
+        user = cursor.fetchone()
+        if password == user[2]:
+            return user
+        return None
     
     # 회원 가입
-    def create_user(self, email, passwd, nickname, name):
+    def create_user(self, email, passwd, nickname, name, auth):
         cursor = UserDBConnect.get_db().cursor()
-        sql = 'INSERT INTO login ( email, passwd, name, nickname ) VALUES (%s,%s,%s,%s)'
-        ret_cnt = cursor.execute(sql,(email, passwd, name, nickname))
+        sql = 'INSERT INTO login ( email, passwd, name, nickname, role ) VALUES (%s,%s,%s,%s,%s)'
+        ret_cnt = cursor.execute(sql,(email, passwd, name, nickname,auth))
         UserDBConnect.get_db().close()
         return ret_cnt
         
@@ -59,6 +59,6 @@ class userDAO :
         
 # if __name__=='__main__':
 #     print(UserDBConnect.get_db())
-#     # print(userDAO().create_user('2','test2@gmail.com', '1234', 'nick2', 'name2'))
-#     # print(userDAO().delete_user('1237'))
-#     print(userDAO().update_user('1','test1@gmail.com', '1234', 'nick', 'name'))
+#     print(userDAO().create_user('root@root.com', '1234', 'root', 'root','0'))
+    # print(userDAO().delete_user('1237'))
+    # print(userDAO().update_user('1','root@root.com', '1234', 'root', 'root','0'))

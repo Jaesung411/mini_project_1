@@ -1,6 +1,6 @@
 from flask import *
 from chat import chat_bp
-from login import login_bp
+from user_admin import login_bp
 from post import post_bp
 from list import list_bp
 
@@ -16,6 +16,9 @@ app.register_blueprint(list_bp)
 def welcome():
     return render_template('welcome.html')
 
+@app.route('/home')
+def home():
+    return render_template('home.html')
 # @app.route('/login', methods=['GET','POST'])
 # def login():
 #     if request.method == "POST":
