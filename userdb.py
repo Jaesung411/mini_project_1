@@ -26,22 +26,54 @@ class userDAO :
     
     # 사용자 인증
     def authenicate(self, useremail, password):
-        cursor = UserDBConnect.get_db().cursor()
-        sql = 'SELECT * FROM login WHERE email=%s AND passwd=%s'
-        UserDBConnect.get_db().close()
-        cursor.execute(sql,(useremail,password))
-        user = cursor.fetchone()
-        if password == user[2]:
-            return user
-        return None
+        try:
+            cursor = UserDBConnect.get_db().cursor()
+            sql = 'SELECT * FROM login WHERE email=%s AND passwd=%s'
+            cursor.execute(sql,(useremail,password))
+            user = cursor.fetchone()
+            if user == None:
+                return None
+            elif password == user[2]:
+                return user
+            
+        except Exception as e:
+            UserDBConnect.get_db().rollback()
+            print("Error:", e)
+            return None
+        finally:
+            UserDBConnect.get_db().close()
     
     # 회원 가입
     def create_user(self, email, passwd, nickname, name, auth):
-        cursor = UserDBConnect.get_db().cursor()
-        sql = 'INSERT INTO login ( email, passwd, name, nickname, role ) VALUES (%s,%s,%s,%s,%s)'
-        ret_cnt = cursor.execute(sql,(email, passwd, name, nickname,auth))
-        UserDBConnect.get_db().close()
-        return ret_cnt
+        try:
+            cursor = UserDBConnect.get_db().cursor()
+
+            # 중복 이메일이 있는지 확인
+            check_email_sql = 'SELECT COUNT(*) FROM login WHERE email = %s'
+            cursor.execute(check_email_sql, (email,))
+            email_result = cursor.fetchone()
+            
+            # 중복 닉네임이 있는지 확인
+            check_nickname_sql = 'SELECT COUNT(*) FROM login WHERE nickname = %s'
+            cursor.execute(check_nickname_sql, (nickname,))
+            nickname_result = cursor.fetchone()
+
+            # 중복 검사 결과 확인
+            if email_result[0] > 0:
+                return [False, "이미 사용 중인 이메일입니다."]
+            elif nickname_result[0] > 0:
+                return [False, "이미 사용 중인 닉네임입니다."]
+
+            sql = 'INSERT INTO login ( email, passwd, name, nickname, role ) VALUES (%s,%s,%s,%s,%s)'
+            cursor.execute(sql,(email, passwd, name, nickname,auth))
+            return [True,"회원 가입 성공했습니다."]
+        
+        except Exception as e:
+            UserDBConnect.get_db().rollback()
+            print("Error:", e)
+            return [False,"서버 에러"]
+        finally:
+            UserDBConnect.get_db().close()
         
     # 회원 정보 수정
     def update_user(self, userno, email, passwd, nickname, name):

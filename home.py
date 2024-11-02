@@ -14,7 +14,7 @@ app.register_blueprint(list_bp)
 
 @app.route('/')
 def welcome():
-    return render_template('welcome.html')
+    return render_template('login/login.html')
 
 @app.route('/home')
 def home():
