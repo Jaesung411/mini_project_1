@@ -59,9 +59,10 @@ class ReviewDAO:
     
     # delete
     @staticmethod
-    def delete_review(review_id):
+    def delete_review(review_id, store_id):
         cursor = DBConnect.get_db().cursor()
         sql_delete = 'DELETE FROM REVIEW WHERE REVIEW_ID=%s'
         ret_cnt = cursor.execute(sql_delete, (review_id))
         DBConnect.get_db().close()
-        return f'DELETE OK : {ret_cnt}'
+        ret = ReviewDAO.get_reviews(store_id)
+        return ret

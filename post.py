@@ -23,6 +23,13 @@ def update_review():
     review = ReviewDAO.update_review(request.form['contents'], request.form['rate'], review_id, store_id, request.form['image'])
     return render_template('post/post.html', reviews=review)
 
+@app.route('/delete', methods=['GET'])
+def delete_review():
+    review_id = 1
+    store_id = 1
+    review = ReviewDAO.delete_review(review_id, store_id)
+    return render_template('post/post.html', reviews=review)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
