@@ -16,5 +16,13 @@ def add_review():
     review = ReviewDAO.insert_review( user_id, store_id, request.form['contents'], request.form['rate'], request.form['image'])
     return render_template('post/post.html', reviews=review)
 
+@app.route('/update', methods=['POST'])
+def update_review():
+    review_id = 1
+    store_id = 1
+    review = ReviewDAO.update_review(request.form['contents'], request.form['rate'], review_id, store_id, request.form['image'])
+    return render_template('post/post.html', reviews=review)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

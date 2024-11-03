@@ -49,18 +49,19 @@ class ReviewDAO:
         
     # update
     @staticmethod
-    def update_review(contents, rate, review_id, image=None):
+    def update_review(contents, rate, review_id, store_id, image=None):
         cursor = DBConnect.get_db().cursor()
         sql_update = 'UPDATE REVIEW SET CONTENTS=%s, RATE=%s, IMAGE=%s WHERE REVIEW_ID=%s'
         ret_cnt = cursor.execute(sql_update, (contents, rate, image, review_id))
         DBConnect.get_db().close()
-        return f'UPDATE OK : {ret_cnt}'
+        ret = ReviewDAO.get_reviews(store_id)
+        return ret
     
     # delete
     @staticmethod
     def delete_review(review_id):
         cursor = DBConnect.get_db().cursor()
         sql_delete = 'DELETE FROM REVIEW WHERE REVIEW_ID=%s'
-        ret_cnt = cursor.execute(sql_delete, (menu_id))
+        ret_cnt = cursor.execute(sql_delete, (review_id))
         DBConnect.get_db().close()
         return f'DELETE OK : {ret_cnt}'
