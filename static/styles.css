@@ -9,7 +9,7 @@
 
 html, body {
   height: 100%;
-  font-family: 'Roboto', sans-serif; #기본 폰트 설정
+  font-family: 'Roboto', sans-serif; /* 기본 폰트 설정 */
   background: #ffffff;
 }
 

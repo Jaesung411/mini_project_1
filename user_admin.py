@@ -56,4 +56,10 @@ def signup():
         else:
             flash(ret[1])
             return render_template('login/signup.html')
+
+@login_bp.route('/logout')    
+def logout():
+    session.pop('login_info', None)
+    return redirect(url_for('login.login'))
+
         
