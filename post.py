@@ -1,7 +1,14 @@
 from flask import *
+from postdb import *
 
-post_bp = Blueprint('post', __name__)
+app = Flask(__name__)
+app.secret_key = '1234'
 
-@post_bp.route('/post')
-def post():
-    return render_template('post/post.html')
+@app.route('/<store_id>/reviews')
+def review_list(store_id):
+    review = ReviewDAO().get_reviews(store_id)
+    print(review)
+    return render_template('post/post.html', reviews=review)
+
+if __name__ == '__main__':
+    app.run(debug=True)
