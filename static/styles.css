@@ -1,7 +1,15 @@
 * { padding: 0; margin: 0; }
 
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap")format('woff2');;
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
   height: 100%;
+  font-family: 'Roboto', sans-serif; #기본 폰트 설정
   background: #ffffff;
 }
 

@@ -34,7 +34,6 @@ class userDAO :
             if user == None:
                 return None
             else:
-                print(user)
                 return user
             
         except Exception as e:

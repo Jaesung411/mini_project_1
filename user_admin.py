@@ -14,7 +14,7 @@ def login():
         #이메일에 해당하는 회원 정보
         user_info = userdb.userDAO().authenicate(email)
 
-        if not check_password_hash(user_info[2], passwd):
+        if user_info == None or not check_password_hash(user_info[2], passwd):
             flash("로그인 실패했습니다.")
             return redirect(url_for('login.login'))
         else:

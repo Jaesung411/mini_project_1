@@ -20,22 +20,6 @@ def welcome():
 def home():
     print(session['userInfo'])
     return render_template('home.html')
-# @app.route('/login', methods=['GET','POST'])
-# def login():
-#     if request.method == "POST":
-#         uemail = request.form['email']
-#         passwd = request.form['passwd']
-#         return render_template("home.html")
-#     else:
-#         return render_template('login/user.html')
-
-# @app.route('/chat')
-# def chat():
-#     return render_template('chat/chat.html')
-
-# @app.route('/post')
-# def post():
-#     return render_template('post/post.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
