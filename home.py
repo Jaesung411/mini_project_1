@@ -18,7 +18,6 @@ socketio.init_app(app)  # app에 socketio 초기화
 app.register_blueprint(chat_bp)
 app.register_blueprint(login_bp)
 app.register_blueprint(post_bp)
-# app.register_blueprint(list_bp)
 
 @app.route('/')
 def welcome():

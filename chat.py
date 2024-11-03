@@ -20,7 +20,7 @@ def on_join(data):
 @socketio.on('message')  # 클라이언트의 메시지 전송 요청 처리 이벤트
 def handle_message(data):
     room = 'chatroom'
-    name = data['name']
+    name = session['userInfo']['nickname']
     contents = data['contents']
     timestamp = datetime.now()
 
