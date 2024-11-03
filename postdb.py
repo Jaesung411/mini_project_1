@@ -17,7 +17,8 @@ class DBConnect:
 
 class ReviewDAO:
     #seelct
-    def get_reviews(self, store_id):
+    @staticmethod
+    def get_reviews(store_id):
         ret = []
         cursor = DBConnect.get_db().cursor()
 
@@ -35,23 +36,29 @@ class ReviewDAO:
         return ret
     
     # insert
-    def insert_review(self, user_id, store_id, contents, rate, image):
+    @staticmethod
+    def insert_review(user_id, store_id, contents, rate, image=None):
+        print(f'store_id: {store_id}')  # 디버깅용 출력
+
         cursor = DBConnect.get_db().cursor()
-        sql_insert = 'INSERT INTO REVIEW (USER_ID, STORE_ID, CONTENTS, RATE, IMAGE) values (%s, %s, %s, %s)'
-        ret_cnt = cursor.execute(sql_insert, (menu_id, store_id, menu_name, price))
-        DBConnect.get_db().close()
-        return f'INSERT OK : {ret_cnt}'
-    
+        sql_insert = 'INSERT INTO REVIEW (USER_ID, STORE_ID, CONTENTS, RATE, IMAGE) VALUES (%s, %s, %s, %s, %s)'
+        ret_cnt = cursor.execute(sql_insert, (user_id, store_id, contents, rate, image))
+        DBConnect.get_db().commit()
+        ret = ReviewDAO.get_reviews(store_id)
+        return ret
+        
     # update
-    def update_review(self, user_id, store_id, contents, rate, image):
+    @staticmethod
+    def update_review(contents, rate, review_id, image=None):
         cursor = DBConnect.get_db().cursor()
-        sql_update = 'UPDATE REVIEW SET USER_ID=%s, STORE_ID=%s, CONTENTS=%s, RATE=%s, IMAGE=%s'
-        ret_cnt = cursor.execute(sql_update, (menu_id, store_id, menu_name, price))
+        sql_update = 'UPDATE REVIEW SET CONTENTS=%s, RATE=%s, IMAGE=%s WHERE REVIEW_ID=%s'
+        ret_cnt = cursor.execute(sql_update, (contents, rate, image, review_id))
         DBConnect.get_db().close()
         return f'UPDATE OK : {ret_cnt}'
     
     # delete
-    def delete_review(self, review_id):
+    @staticmethod
+    def delete_review(review_id):
         cursor = DBConnect.get_db().cursor()
         sql_delete = 'DELETE FROM REVIEW WHERE REVIEW_ID=%s'
         ret_cnt = cursor.execute(sql_delete, (menu_id))
