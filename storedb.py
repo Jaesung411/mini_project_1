@@ -73,20 +73,20 @@ class StoreDAO:
                 'food_type': row[5]
             }
         return None  # 가게가 없으면 None 반환
-    
+
     # insert
     def insert_store(self, store_id, name, address, image, rate, food_type):
         cursor = DBConnect.get_db().cursor()
-        sql_insert = 'insert into store (store_id, name, address, image, rate, food_type) values (%s, %s, %s, %s, %s, %s)'
-        ret_cnt = cursor.execute(sql_insert, (store_id, name, address, image, rate, food_type))
+        sql_insert = 'insert into store (store_id, name, food_type, address, image, rate) values (%s, %s, %s, %s, %s, %s)'
+        ret_cnt = cursor.execute(sql_insert, (store_id, name, food_type, address, image, rate))
         DBConnect.get_db().close()
         return f'insert OK : {ret_cnt}'
     
     # update
     def update_store(self, store_id, name, address, image, rate, food_type):
         cursor = DBConnect.get_db().cursor()
-        sql_update = 'update store set store_id=%s, name=%s, address=%s, image=%s, rate=%s, food_type=%s'
-        ret_cnt = cursor.execute(sql_update, (store_id, name, address, image, rate, food_type))
+        sql_update = 'update store set name=%s, food_type=%s, address=%s, image=%s, rate=%s where store_id=%s'
+        ret_cnt = cursor.execute(sql_update, (name, food_type, address, image, rate, store_id))
         DBConnect.get_db().close()
         return f'update OK : {ret_cnt}'
     
@@ -106,3 +106,4 @@ if __name__=='__main__':
     
     store_list = StoreDAO().get_stores()
     print(store_list)
+    
