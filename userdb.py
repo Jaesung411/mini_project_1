@@ -25,15 +25,16 @@ class userDAO :
         return result
     
     # 사용자 인증
-    def authenicate(self, useremail, password):
+    def authenicate(self, useremail):
         try:
             cursor = UserDBConnect.get_db().cursor()
-            sql = 'SELECT * FROM login WHERE email=%s AND passwd=%s'
-            cursor.execute(sql,(useremail,password))
+            sql = 'SELECT * FROM login WHERE email=%s'
+            cursor.execute(sql,(useremail))
             user = cursor.fetchone()
             if user == None:
                 return None
-            elif password == user[2]:
+            else:
+                print(user)
                 return user
             
         except Exception as e:
