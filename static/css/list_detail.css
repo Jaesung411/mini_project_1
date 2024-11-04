@@ -73,7 +73,6 @@ h1 {
 /* 가게 관리 버튼 스타일 */
 .manage-button {
     position: absolute; /* 절대 위치 */
-    top: 20px; /* 상단 여백 */
     right: 20px; /* 우측 여백 */
     padding: 5px 10px; /* 패딩 추가 */
     font-size: 1em; /* 폰트 크기 조정 */
@@ -85,6 +84,14 @@ h1 {
     text-align: center; /* 텍스트 가운데 정렬 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 그림자 추가 */
     transition: background-color 0.3s; /* 배경 색상 변화 애니메이션 */
+}
+
+.manage-button.main {
+    top: 20px; /* 첫 번째 버튼 위치 */
+}
+
+.manage-button.detail {
+    top: 60px; /* 두 번째 버튼 위치, 첫 번째 버튼 아래에 위치하도록 조정 */
 }
 
 .manage-button:hover {
