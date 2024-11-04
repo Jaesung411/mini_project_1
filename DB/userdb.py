@@ -64,8 +64,8 @@ class userDAO :
             elif nickname_result[0] > 0:
                 return [False, "이미 사용 중인 닉네임입니다."]
 
-            sql = 'INSERT INTO login ( email, passwd, name, nickname, role ) VALUES (%s,%s,%s,%s,%s)'
-            cursor.execute(sql,(email, passwd, name, nickname,auth))
+            sql = 'INSERT INTO login ( email, passwd, nickname, name, role ) VALUES (%s,%s,%s,%s,%s)'
+            cursor.execute(sql,(email, passwd, nickname, name, auth))
             return [True,"회원 가입 성공했습니다."]
         
         except Exception as e:
@@ -76,21 +76,31 @@ class userDAO :
             UserDBConnect.get_db().close()
         
     # 회원 정보 수정
-    def update_user(self, userno, email, passwd, nickname, name):
-        cursor = UserDBConnect.get_db().cursor()
-        sql = 'UPDATE login SET email=%s, passwd=%s, nickname=%s, name=%s WHERE userno=%s'
-        ret_cnt = cursor.execute(sql,( email, passwd, nickname, name, userno))
-        UserDBConnect.get_db().close()
+    def update_user(self, userno, email, name, nickname):
+        try:
+            cursor = UserDBConnect.get_db().cursor()
+            sql = 'UPDATE login SET email=%s, name=%s, nickname=%s WHERE userno=%s'
+            ret_cnt = cursor.execute(sql,( email,  name, nickname, userno))
+        except Exception as e:
+            UserDBConnect.get_db().rollback()
+            print("Error:", e)
+        finally:
+            UserDBConnect.get_db().close()
     
     # 회원 탈퇴
     def delete_user(self, userno):
-        cursor = UserDBConnect.get_db().cursor()
-        sql = 'DELETE FROM login WHERE userno=%s'
-        ret_cnt = cursor.execute(sql,(userno))
-        UserDBConnect.get_db().close()
+        try:
+            cursor = UserDBConnect.get_db().cursor()
+            sql = 'DELETE FROM login WHERE userno=%s'
+            ret_cnt = cursor.execute(sql,(userno))
+        except Exception as e:
+            UserDBConnect.get_db().rollback()
+            print("Error:", e)
+        finally:
+            UserDBConnect.get_db().close()
         
 # if __name__=='__main__':
-#     print(UserDBConnect.get_db())
-#     print(userDAO().create_user('root@root.com', '1234', 'root', 'root','0'))
+    # print(UserDBConnect.get_db())
+    # print(userDAO().create_user('root@root.com', '1234', 'root', 'root','0'))
     # print(userDAO().delete_user('1237'))
-    # print(userDAO().update_user('1','root@root.com', '1234', 'root', 'root','0'))
+    # print(userDAO().update_user('1267','test1@test1.com', 'jaesung', 'nickname'))

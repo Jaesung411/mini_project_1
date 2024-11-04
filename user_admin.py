@@ -20,6 +20,7 @@ def login():
         else:
             flash("로그인 성공했습니다.")
             session['userInfo'] = {
+                'userId':user_info[0],
                 'email':user_info[1],
                 'name':user_info[3],
                 'nickname':user_info[4],
@@ -47,7 +48,7 @@ def signup():
         if auth == '-1':
             flash("권한을 선택하세요")
             return redirect(url_for('login.signup'))
-        ret = userdb.userDAO().create_user(email,hashed_password,name,nickname,auth)
+        ret = userdb.userDAO().create_user(email,hashed_password,nickname,name,auth)
       
         if ret[0]:
             flash(ret[1])

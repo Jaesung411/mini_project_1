@@ -22,7 +22,11 @@
               <a class="nav-link" href="/chat">Chatting</a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Mypage</a>
+            {%if session['userInfo']['role'] == '0'%}
+            <a class="nav-link" href="/manage">Admin</a>
+            {%else%}
+            <a class="nav-link" href="/mypage">Mypage</a>
+            {%endif%}
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
@@ -30,24 +34,11 @@
         </ul>
 
         <!-- 검색창 -->
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search for food" aria-label="Search">
+        <form class="d-flex" action="/search" role="search">
+          <input class="form-control me-2" type="search" name="query" placeholder="Search for food" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
 
-        <!-- 사용자 메뉴 -->
-        <ul class="navbar-nav ms-3">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              User
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="userMenu">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Favorites</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
       </div>
     </div>
   </nav>
