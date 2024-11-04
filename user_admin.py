@@ -20,6 +20,7 @@ def login():
         else:
             flash("로그인 성공했습니다.")
             session['userInfo'] = {
+                'userId':user_info[0],
                 'email':user_info[1],
                 'name':user_info[3],
                 'nickname':user_info[4],

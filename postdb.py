@@ -19,11 +19,14 @@ class ReviewDAO:
     #seelct
     @staticmethod
     def get_reviews(store_id):
+        print(f'store_id: {store_id}')  # 디버깅용 출력
+
+        
         ret = []
         cursor = DBConnect.get_db().cursor()
 
-        sql_select = 'SELECT REVIEW_ID, CONTENTS, RATE, IMAGE FROM REVIEW WHERE STORE_ID = %s'
-        cursor.execute(sql_select, (store_id,))
+        sql_select = 'SELECT REVIEW_ID, CONTENTS, RATE, IMAGE FROM REVIEW WHERE STORE_ID = %s ORDER BY REVIEW_ID DESC'
+        cursor.execute(sql_select, (store_id))
 
         rows = cursor.fetchall()
         for row in rows:
