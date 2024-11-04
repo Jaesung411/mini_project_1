@@ -16,12 +16,9 @@ class DBConnect:
         )
 
 class ReviewDAO:
-    #seelct
+    # 가게 별 리뷰 조회
     @staticmethod
     def get_reviews(store_id):
-        print(f'store_id: {store_id}')  # 디버깅용 출력
-
-        
         ret = []
         cursor = DBConnect.get_db().cursor()
 
@@ -38,7 +35,27 @@ class ReviewDAO:
             })
         return ret
     
-    # insert
+    # 내가 작성한 리뷰 조회
+    @staticmethod
+    def get_my_reviews(user_id):
+        
+        ret = []
+        cursor = DBConnect.get_db().cursor()
+
+        sql_select = 'SELECT REVIEW_ID, CONTENTS, RATE, IMAGE FROM REVIEW WHERE USER_ID = %s ORDER BY REVIEW_ID DESC'
+        cursor.execute(sql_select, (user_id))
+
+        rows = cursor.fetchall()
+        for row in rows:
+            ret.append({
+                'review_id': row[0],
+                'contents': row[1],
+                'rate': row[2],
+                'image': row[3]
+            })
+        return ret
+    
+    # 새 리뷰 생성
     @staticmethod
     def insert_review(user_id, store_id, contents, rate, image=None):
         print(f'store_id: {store_id}')  # 디버깅용 출력
@@ -50,7 +67,7 @@ class ReviewDAO:
         ret = ReviewDAO.get_reviews(store_id)
         return ret
         
-    # update
+    # 리뷰 업데이트
     @staticmethod
     def update_review(contents, rate, review_id, store_id, image=None):
         cursor = DBConnect.get_db().cursor()
@@ -60,7 +77,7 @@ class ReviewDAO:
         ret = ReviewDAO.get_reviews(store_id)
         return ret
     
-    # delete
+    # 리뷰 삭제
     @staticmethod
     def delete_review(review_id, store_id):
         cursor = DBConnect.get_db().cursor()
