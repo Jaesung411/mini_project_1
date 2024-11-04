@@ -6,6 +6,7 @@ from user_admin import login_bp
 from post import post_bp
 from manage import manage_bp
 from mypage import mypage_bp
+from map import map_bp
 
 from DB.storedb import *
 from DB.menudb import *
@@ -22,6 +23,7 @@ app.register_blueprint(login_bp)
 app.register_blueprint(post_bp)
 app.register_blueprint(manage_bp)
 app.register_blueprint(mypage_bp)
+app.register_blueprint(map_bp)
 
 @app.route('/')
 def welcome():
