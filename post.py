@@ -15,17 +15,13 @@ def add_review(store_id):
     review = ReviewDAO.insert_review( user_id, store_id, request.form['contents'], request.form['rate'], request.form['image'])
     return render_template('post/post.html', reviews=review)
 
-@post_bp.route('/update', methods=['POST'])
-def update_review():
-    review_id = 1
-    store_id = 1
+@post_bp.route('/update/<int:store_id>/<int:review_id>', methods=['POST'])
+def update_review(store_id, review_id):
     review = ReviewDAO.update_review(request.form['contents'], request.form['rate'], review_id, store_id, request.form['image'])
     return render_template('post/post.html', reviews=review)
 
-@post_bp.route('/delete', methods=['GET'])
-def delete_review():
-    review_id = 1
-    store_id = 1
+@post_bp.route('/delete/<int:store_id>/<int:review_id>', methods=['GET'])
+def delete_review(store_id, review_id):
     review = ReviewDAO.delete_review(review_id, store_id)
     return render_template('post/post.html', reviews=review)
 

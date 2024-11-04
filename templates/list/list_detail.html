@@ -77,22 +77,21 @@
                               <h5 class="modal-title fs-5" id="exampleModalLabel">리뷰 수정하기</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <form action="/update" method="POST">
-                                    리뷰 <input type="text" name="contents"/><br>
-                                    평점 <input type="range" name="rate" min="0" max="5" step="0.5"/><br>
-                                    이미지 <input type="file" name="image"/><br>
-                                    <input type="submit" value="수정하기"/>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">창 닫기</button>
-                              <button type="submit" class="btn btn-primary">수정하기</button>
-                            </div>
+                            <form action='update/{{store['store_id']}}/{{review['review_id']}}' method="POST">
+                                <div class="modal-body">
+                                        리뷰 <input type="text" name="contents"/><br>
+                                        평점 <input type="range" name="rate" min="0" max="5" step="0.5"/><br>
+                                        이미지 <input type="file" name="image"/><br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">창 닫기</button>
+                                    <button type="submit" class="btn btn-primary">수정하기</button>
+                                </div>
+                            </form>
                           </div>
                         </div>
                       </div>
-                    <form action="/delete" method="GET">
+                    <form action='/delete/{{store['store_id']}}/{{review['review_id']}}' method="GET">
                         <button type="submit" class="btn btn-primary">삭제</button>
                     </form>
                 </td>
