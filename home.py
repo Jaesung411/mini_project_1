@@ -4,7 +4,6 @@ from flask_socketio import SocketIO
 from chat import chat_bp
 from user_admin import login_bp
 from post import post_bp
-from list import list_bp
 
 from DB.storedb import *
 from DB.menudb import *
@@ -56,8 +55,6 @@ def store_detail(store_name):
     # 해당 store_id의 메뉴 가져오기
     menus = MenuDAO().get_menus_by_store_id(store['store_id'])
     return render_template('list/list_detail.html', store=store, images=images, menus=menus)
-
-
 
 # socketio.run으로 app이 동작하는 http 위에 socketio가 웹소켓으로 동작하도록 함
 # chat_bp로 분리된 모듈에서 독립적으로 SocketIO 서버(WebSocket) 사용 불가
