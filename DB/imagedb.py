@@ -8,7 +8,7 @@ class DBConnect:
     def get_db(self):
         return pymysql.connect(
             host='127.0.0.1',
-            user='root',
+            user='user1',
             passwd='qwer1234',
             db='mini_proj',
             charset='utf8',

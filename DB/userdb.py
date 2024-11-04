@@ -4,8 +4,8 @@ class UserDBConnect:
     @classmethod
     def get_db(self):
         return pymysql.connect(
-            host='127.0.0.1',
-            user='userdb',
+          host='127.0.0.1',
+            user='user1',
             passwd='qwer1234',
             db='mini_proj',
             charset='utf8',
