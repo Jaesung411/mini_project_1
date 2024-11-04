@@ -28,3 +28,30 @@ geocoder.addressSearch(storeAddress, function(result, status) {
         infowindow.open(map, marker);
     }
 });
+
+// 사용자의 현재 위치를 가져와 지도의 중심으로 설정
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude; // 현재 위도
+        var lon = position.coords.longitude; // 현재 경도
+
+        var locPosition = new kakao.maps.LatLng(lat, lon);
+
+        // 현재 위치에 마커 표시
+        var currentLocationMarker = new kakao.maps.Marker({
+            map: map,
+            position: locPosition
+        });
+
+        // "현재 위치" 텍스트 표시
+        var currentLocationInfoWindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:80px;text-align:center;padding:6px 0;">현재 위치</div>'
+        });
+        currentLocationInfoWindow.open(map, currentLocationMarker);
+
+        // 중심으로 설정
+        map.setCenter(locPosition);
+    });
+} else {
+    alert("현재 위치 찾을 수 없음");
+}
