@@ -77,7 +77,7 @@
                               <h5 class="modal-title fs-5" id="exampleModalLabel">리뷰 수정하기</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action='update/{{store['store_id']}}/{{review['review_id']}}' method="POST">
+                            <form action='/update/{{store['store_id']}}/{{review['review_id']}}' method="POST">
                                 <div class="modal-body">
                                         리뷰 <input type="text" name="contents"/><br>
                                         평점 <input type="range" name="rate" min="0" max="5" step="0.5"/><br>
@@ -91,7 +91,7 @@
                           </div>
                         </div>
                       </div>
-                    <form action='/delete/{{store['store_id']}}/{{review['review_id']}}' method="GET">
+                    <form action='/delete/{{store['store_id']}}/{{review['review_id']}}' method="POST">
                         <button type="submit" class="btn btn-primary">삭제</button>
                     </form>
                 </td>
