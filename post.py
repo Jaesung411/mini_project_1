@@ -10,7 +10,18 @@ post_bp.secret_key = '1234'
 @post_bp.route('/<store_id>/reviews')
 def review_list_detail(store_id):
     review = ReviewDAO().get_reviews(store_id)
+    print(review)
     return render_template('post/post.html', reviews=review)
+
+@post_bp.route('/<user_id>/myreview')
+def my_review_list(user_id):
+    review = ReviewDAO().get_my_reviews(user_id)
+    return render_template('post/post.html', reviews=review)
+
+@post_bp.route('/<store_id>/rate')
+def store_rate(store_id):
+    review = ReviewDAO().get_rate(store_id)
+    return f'update OK : {review}'
 
 @post_bp.route('/new_review/<int:store_id>', methods=['POST'])
 def add_review(store_id):

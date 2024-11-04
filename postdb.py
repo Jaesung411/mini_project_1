@@ -55,6 +55,19 @@ class ReviewDAO:
             })
         return ret
     
+    # 가게 평점 계산
+    @staticmethod
+    def get_rate(store_id):
+        
+        ret = []
+        cursor = DBConnect.get_db().cursor()
+
+        sql_select = 'SELECT AVG(RATE) FROM REVIEW WHERE STORE_ID = %s ORDER BY REVIEW_ID DESC'
+        cursor.execute(sql_select, (store_id,))
+
+        rate = cursor.fetchone()
+        return rate[0] if rate[0] is not None else 0
+    
     # 새 리뷰 생성
     @staticmethod
     def insert_review(user_id, store_id, contents, rate, image=None):
