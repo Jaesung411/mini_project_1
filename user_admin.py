@@ -22,8 +22,8 @@ def login():
             session['userInfo'] = {
                 'userId':user_info[0],
                 'email':user_info[1],
-                'name':user_info[3],
-                'nickname':user_info[4],
+                'name':user_info[4],
+                'nickname':user_info[3],
                 'role':user_info[5]
             }
             return redirect(url_for('home'))

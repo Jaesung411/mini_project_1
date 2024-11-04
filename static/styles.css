@@ -113,6 +113,11 @@ h1 a {
   background-color: #4d4d4d; /* 클릭 시 더 어두운 회색 */
 }
 
+.delete-button {
+  color: white;
+  background-color: red;
+}
+
 .pagination .page-link {
   color: #5c5151; /* 흰색 텍스트 */
 }
