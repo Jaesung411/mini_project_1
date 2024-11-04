@@ -10,6 +10,7 @@ from mypage import mypage_bp
 from DB.storedb import *
 from DB.menudb import *
 from DB.imagedb import *
+from postdb import *
 
 app = Flask(__name__)
 app.secret_key='1234'
@@ -58,7 +59,21 @@ def store_detail(store_name):
     images = ImageDAO().get_images_by_store_id(store['store_id'])
     # 해당 store_id의 메뉴 가져오기
     menus = MenuDAO().get_menus_by_store_id(store['store_id'])
-    return render_template('list/list_detail.html', store=store, images=images, menus=menus)
+    reviews = ReviewDAO().get_reviews(store['store_id'])
+
+    page = request.args.get('page', 1, type=int)
+    per_page = 9
+    total_pages = (len(reviews) - 1) // per_page + 1
+    paginated_reviews = reviews[(page - 1) * per_page: page * per_page]
+    return render_template(
+        'list/list_detail.html', 
+        store=store, 
+        images=images, 
+        menus=menus, 
+        reviews=reviews, 
+        paginated_reviews=paginated_reviews, 
+        page=page, total_pages=total_pages
+    )
 
 @app.route('/search')
 def search():

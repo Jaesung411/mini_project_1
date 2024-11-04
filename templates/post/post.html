@@ -6,6 +6,45 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>POST</h1>
+    <h1>전체 리뷰 보기</h1>
+    <div>
+        <h2>새 리뷰 작성하기</h2>
+        <form action="/new_review" method="POST">
+            리뷰 <input type="text" name="contents"/><br>
+            평점 <input type="range" name="rate" min="0" max="5" step="0.5"/><br>
+            이미지 <input type="file" name="image"/><br>
+            <input type="submit" value="등록하기"/>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <th>리뷰</th>
+            <th>평점</th>
+            <th>이미지</th>
+            <th>수정/삭제</th>
+        </thead>
+        {% for review in reviews %}
+        <tr>
+            <td>{{review['contents']}}</td>
+            <td>{{review['rate']}}</td>
+            <td>{{review['image']}}</td>
+            <td>
+                <p>수정</p>
+                <div>
+                    <h2>리뷰 수정하기</h2>
+                    <form action="/update" method="POST">
+                        리뷰 <input type="text" name="contents"/><br>
+                        평점 <input type="range" name="rate" min="0" max="5" step="0.5"/><br>
+                        이미지 <input type="file" name="image"/><br>
+                        <input type="submit" value="수정하기"/>
+                    </form>
+                </div>
+                <form action="/delete" method="GET">
+                    <input type="submit" value="삭제"/>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
 </body>
 </html>
