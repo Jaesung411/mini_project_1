@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ store['name'] }} 상세 페이지</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/store_detail.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="button-group">
+            <a href="/" class="manage-button main">메인 페이지</a> <!-- 메인 페이지 버튼 -->
+            <a href="/{{ store['name'] }}/image" class="manage-button detail">이미지 관리</a> <!-- 이미지 관리 버튼 추가 -->
+    </div>
+        <h2>{{ store['name'] }}</h2>
+        <h3>메뉴 관리</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>메뉴 ID</th>
+                    <th>메뉴 이름</th>
+                    <th>가격</th>
+                    <th>삭제/수정</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in menus %}
+                <tr>
+                    <td>{{ menu['menu_id'] }}</td>
+                    <td>{{ menu['menu_name'] }}</td>
+                    <td>{{ menu['price'] }}</td>
+                    <td>
+                        <form action="{{ url_for('manage_menu', store_name=store['name']) }}" method="POST" style="display:inline;" onsubmit="return confirmAction('삭제', this)">
+                            <input type="hidden" name="menu_id" value="{{ menu['menu_id'] }}">
+                            <input type="hidden" name="action" value="삭제">
+                            <input type="submit" value="삭제">
+                        </form>
+                        <button onclick="editMenu('{{ menu.menu_id }}', '{{ menu.menu_name }}', '{{ menu.price }}')">수정</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h4>메뉴 추가</h4>
+        <form action="{{ url_for('manage_menu', store_name=store['name']) }}" method="POST" onsubmit="return confirmAction('추가', this)">
+            <input type="hidden" name="store_id" value="{{ store['store_id'] }}">
+            <input type="text" name="menu_name" placeholder="메뉴 이름" required>
+            <input type="number" name="price" placeholder="가격" required step="1000" min="0">
+            <input type="submit" name="action" value="추가">
+        </form>
+
+        <h4>메뉴 수정</h4>
+        <form id="edit-menu-form" action="{{ url_for('manage_menu', store_name=store['name']) }}" method="POST" style="display:none;" onsubmit="return confirmAction('수정', this)">
+            <input type="hidden" name="menu_id" id="edit-menu-id">
+            <input type="text" name="menu_name" id="edit-menu-name" placeholder="메뉴 이름" required>
+            <input type="number" name="price" id="edit-menu-price" placeholder="가격" required step="1000" min="0">
+            <input type="hidden" name="action" value="수정">
+            <input type="submit" value="수정">
+            <button type="button" onclick="cancelEdit()">취소</button>
+        </form>
+    </div>
+
+    <script>
+        function editMenu(menu_id, menu_name, price) {
+            document.getElementById('edit-menu-id').value = menu_id;
+            document.getElementById('edit-menu-name').value = menu_name;
+            document.getElementById('edit-menu-price').value = price;
+            document.getElementById('edit-menu-form').style.display = 'block';
+        }
+    
+        function cancelEdit() {
+            document.getElementById('edit-menu-form').style.display = 'none';
+        }
+    
+        function confirmAction(action, form) {
+            const confirmed = confirm(`이 메뉴를 ${action}하시겠습니까?`);
+            if (confirmed) {
+                alert(`메뉴가 ${action} 되었습니다.`); // 확인 후 알림 추가
+                return true; // 폼 제출 허용
+            }
+            return false; // 폼 제출 거부
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가게 관리</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/list_manage.css') }}">
+</head>
+<body>
+<div class="store-management">
+    <h1>가게 관리</h1>
+    <a href="/" class="manage-button main">메인 페이지</a> <!-- 메인 페이지 버튼 -->
+    <h2>가게 목록</h2>
+    <table>
+        <tr>
+            <th>가게 번호</th>
+            <th>가게 이름</th>
+            <th>주소</th>
+            <th>음식 종류</th>
+            <th>평점</th>
+            <th>삭제/수정</th>
+        </tr>
+        {% for store in stores %}
+        <tr>
+            <td>{{ store.store_id }}</td>
+            <td>{{ store.name }}</td>
+            <td>{{ store.address }}</td>
+            <td>{{ store.food_type }}</td>
+            <td>{{ store.rate }}</td>
+            <td>
+                <!-- 삭제 버튼 -->
+                <form action="/list_manage" method="POST" style="display:inline;" onsubmit="return confirmAction('삭제', this)">
+                    <input type="hidden" name="store_id" value="{{ store.store_id }}">
+                    <button type="submit" name="action" value="delete">삭제</button>
+                </form>
+                <!-- 수정 버튼 -->
+                <button onclick="editStore('{{ store.store_id }}', '{{ store.name }}', '{{ store.food_type }}', '{{ store.address }}', '{{ store.image }}', '{{ store.rate }}')">수정</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>가게 추가</h2>
+    <form action="/list_manage" method="POST" enctype="multipart/form-data" onsubmit="return confirmAction('추가', this)">
+        <input type="text" name="store_id" placeholder="가게 번호" required>
+        <input type="text" name="name" placeholder="가게 이름" required>
+        <input type="text" name="food_type" placeholder="음식 종류" required>
+        <input type="text" name="address" placeholder="주소" required>
+        <input type="file" name="image" required> <!-- 파일 업로드 필드 추가 -->
+        <input type="number" name="rate" placeholder="평점" min="0" max="5" step="0.1" required>
+        <input type="hidden" name="action" value="add">
+        <button type="submit">가게 추가</button>
+    </form>
+
+    <h2>가게 수정</h2>
+    <form id="edit-form" action="/list_manage" method="POST" enctype="multipart/form-data" style="display:none;" onsubmit="return confirmAction('수정', this)">
+        <input type="hidden" name="store_id" id="edit-store-id">
+        <input type="text" name="name" id="edit-name" placeholder="가게 이름" required>
+        <input type="text" name="food_type" id="edit-food-type" placeholder="음식 종류" required>
+        <input type="text" name="address" id="edit-address" placeholder="주소" required>
+        <input type="file" name="image" id="edit-image" placeholder="대표 이미지"> <!-- required 제거 -->
+        <input type="number" name="rate" id="edit-rate" placeholder="평점" min="0" max="5" step="0.1" required>
+        <input type="hidden" name="action" value="update">
+        <button type="submit">수정</button>
+        <button type="button" onclick="cancelEdit()">취소</button>
+    </form>
+</div>
+
+<script>
+    function editStore(store_id, name, food_type, address, image, rate) {
+        document.getElementById('edit-store-id').value = store_id;
+        document.getElementById('edit-name').value = name;
+        document.getElementById('edit-food-type').value = food_type;
+        document.getElementById('edit-address').value = address;
+        document.getElementById('edit-rate').value = rate;
+        document.getElementById('edit-form').style.display = 'block';
+    }
+
+    function cancelEdit() {
+        document.getElementById('edit-form').style.display = 'none';
+    }
+
+    function confirmAction(action, form) {
+        const confirmed = confirm(`가게를 ${action}하시겠습니까?`);
+        if (confirmed) {
+            alert(`가게가 ${action}되었습니다.`); // 팝업으로 알림 표시
+        }
+        return confirmed; // 폼 제출 허용 여부
+    }
+</script>
+</body>
+</html>

@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List</title>
+    <title>맛점</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}">
 </head>
 <body>
-    <h1>List Page</h1>
+    <h1><a href="/">맛점</a></h1>
+    <a href="/list_manage" class="manage-button">가게 관리</a> <!-- 가게 관리 버튼 추가 -->
+    <div class="image_list">
+        {% for store in list %}
+        <div class="image_container">
+            <a href="/{{ store['name'] }}">
+                <img src="{{ url_for('static', filename=store['image']) }}" alt="{{ store['name'] }}" class="image_size">
+            </a>
+            <div class="store_name">
+                <a href="/{{ store['name'] }}">{{ store['store_id'] }}. {{ store['name'] }}</a>
+                <a href="/{{ store['name'] }}/detail" class="detail-button">상세 관리</a> <!-- 상세 관리 버튼 추가 -->
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

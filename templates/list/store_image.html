@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ store['name'] }} 이미지 관리</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/store_detail.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="button-group">
+            <a href="/" class="manage-button main">메인 페이지</a>
+            <a href="/{{ store['name'] }}/detail" class="manage-button">메뉴 관리</a>
+        </div>
+        <h2>{{ store['name'] }}</h2>
+        <h3>이미지 관리</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>이미지 ID</th>
+                    <th>이미지 경로</th>
+                    <th>삭제/수정</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for image in images %}
+                <tr>
+                    <td>{{ image['image_id'] }}</td>
+                    <td>{{ image['path'] }}</td>
+                    <td>
+                        <form action="{{ url_for('manage_images', store_name=store['name']) }}" method="POST" style="display:inline;" onsubmit="return confirmAction('삭제', this)">
+                            <input type="hidden" name="image_id" value="{{ image['image_id'] }}">
+                            <input type="hidden" name="action" value="삭제">
+                            <input type="submit" value="삭제">
+                        </form>
+                        <button onclick="editImage('{{ image.image_id }}')">수정</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h4>이미지 추가</h4>
+        <form action="{{ url_for('manage_images', store_name=store['name']) }}" method="POST" enctype="multipart/form-data" onsubmit="return confirmAction('추가', this)">
+            <input type="hidden" name="store_id" value="{{ store['store_id'] }}">
+            <input type="file" name="image" required>
+            <input type="submit" name="action" value="추가">
+        </form>
+
+        <h4>이미지 수정</h4>
+        <form id="edit-image-form" action="{{ url_for('manage_images', store_name=store['name']) }}" method="POST" style="display:none;" onsubmit="return confirmAction('수정', this)" enctype="multipart/form-data">
+            <input type="hidden" name="image_id" id="edit-image-id">
+            <input type="file" name="image" id="edit-image-file" required>
+            <input type="hidden" name="action" value="수정">
+            <input type="submit" value="수정">
+            <button type="button" onclick="cancelEdit()">취소</button>
+        </form>
+    </div>
+
+    <script>
+        function editImage(image_id) {
+            document.getElementById('edit-image-id').value = image_id;
+            // 파일 입력 필드에는 경로를 미리 설정할 수 없으므로, 사용자에게 새 이미지를 선택하도록 요청해야 합니다.
+            document.getElementById('edit-image-form').style.display = 'block';
+        }
+
+        function cancelEdit() {
+            document.getElementById('edit-image-form').style.display = 'none';
+        }
+
+        function confirmAction(action, form) {
+            const confirmed = confirm(`이 이미지를 ${action}하시겠습니까?`);
+            if (confirmed) {
+                alert(`이미지가 ${action} 되었습니다.`);
+                return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

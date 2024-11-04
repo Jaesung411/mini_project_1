@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ store['name'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/list_detail.css') }}"> <!-- 외부 CSS 파일 링크 -->
+</head>
+<body>
+    <h1>{{ store['name'] }} / {{ store['food_type'] }}</h1>
+    <nav>
+        <a href="/" class="manage-button">메인 페이지</a> <!-- 메인 페이지 버튼 -->
+        <a href="/{{ store['name'] }}/detail" class="manage-button">상세 관리</a> <!-- 상세 관리 버튼 수정 -->
+    </nav>
+    <div class="slider">
+        <div class="slides">
+            {% for image in images %}
+            <div class="slide image_item">
+                <img src="{{ url_for('static', filename=image.path) }}" alt="Image for {{ store['name'] }}">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="controls">
+            <button class="control" onclick="moveSlide(-1)"> &lt; </button>
+            <button class="control" onclick="moveSlide(1)"> &gt; </button>
+        </div>
+        <div class="store-info">
+            <h2>주소 : {{ store['address'] }}</h2>
+            <h2>< 대표 메뉴 ></h2>
+            <div>
+                {% for menu in menus %}
+                <div class="menu-item">{{ menu['menu_name'] }} ({{ menu['price'] }}원)</div>
+                {% endfor %}
+            </div>
+            <p>평점 : {{ store['rate'] }}</p>
+        </div>
+    </div>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            if (index < 0) {
+                currentSlide = slides.length - 1; // 마지막 슬라이드로 돌아가기
+            } else if (index >= slides.length) {
+                currentSlide = 0; // 첫 번째 슬라이드로 돌아가기
+            } else {
+                currentSlide = index;
+            }
+            const offset = -currentSlide * 100;
+            document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
+        }
+        function moveSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        // 첫 번째 슬라이드를 기본으로 보여줍니다.
+        showSlide(currentSlide);
+        // 페이지가 로드될 때 스크롤을 최상단으로 이동
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
+    </script>   
+</body>
+</html>
