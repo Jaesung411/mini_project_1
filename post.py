@@ -1,7 +1,35 @@
 from flask import *
+from postdb import *
 
-post_bp = Blueprint('post', __name__)
+app = Flask(__name__)
+app.secret_key = '1234'
 
-@post_bp.route('/post')
-def post():
-    return render_template('post/post.html')
+@app.route('/<store_id>/reviews')
+def review_list(store_id):
+    review = ReviewDAO().get_reviews(store_id)
+    return render_template('post/post.html', reviews=review)
+
+@app.route('/new_review', methods=['POST'])
+def add_review():
+    user_id = 1
+    store_id = 1
+    review = ReviewDAO.insert_review( user_id, store_id, request.form['contents'], request.form['rate'], request.form['image'])
+    return render_template('post/post.html', reviews=review)
+
+@app.route('/update', methods=['POST'])
+def update_review():
+    review_id = 1
+    store_id = 1
+    review = ReviewDAO.update_review(request.form['contents'], request.form['rate'], review_id, store_id, request.form['image'])
+    return render_template('post/post.html', reviews=review)
+
+@app.route('/delete', methods=['GET'])
+def delete_review():
+    review_id = 1
+    store_id = 1
+    review = ReviewDAO.delete_review(review_id, store_id)
+    return render_template('post/post.html', reviews=review)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
