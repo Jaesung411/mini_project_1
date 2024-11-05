@@ -7,11 +7,12 @@ from post import post_bp
 from manage import manage_bp
 from mypage import mypage_bp
 from map import map_bp
+from list import list_bp
 
 from DB.storedb import *
 from DB.menudb import *
 from DB.imagedb import *
-from postdb import *
+from DB.postdb import *
 import logging
 import logging.config 
 
@@ -30,6 +31,7 @@ app.register_blueprint(post_bp)
 app.register_blueprint(manage_bp)
 app.register_blueprint(mypage_bp)
 app.register_blueprint(map_bp)
+app.register_blueprint(list_bp)
 
 @app.route('/')
 def welcome():
@@ -56,31 +58,7 @@ def home():
     return render_template('home.html', list=paginated_stores, page=page, total_pages=total_pages)
     # return render_template('home.html', list=list)
 
-# 가게 상세 페이지
-@app.route('/<store_name>')
-def store_detail(store_name):
-    # store_name을 사용하여 해당 가게의 정보를 가져오는 로직 추가
-    store = StoreDAO().get_store_by_name(store_name)
-    # 가게 ID를 사용하여 이미지 가져오기
-    images = ImageDAO().get_images_by_store_id(store['store_id'])
-    # 해당 store_id의 메뉴 가져오기
-    menus = MenuDAO().get_menus_by_store_id(store['store_id'])
-    reviews = ReviewDAO().get_reviews(store['store_id'])
 
-    page = request.args.get('page', 1, type=int)
-    per_page = 9
-    total_pages = (len(reviews) - 1) // per_page + 1
-    paginated_reviews = reviews[(page - 1) * per_page: page * per_page]
-    return render_template(
-        'list/list_detail.html', 
-        store=store, 
-        images=images, 
-        menus=menus, 
-        reviews=reviews, 
-        paginated_reviews=paginated_reviews, 
-        page=page, 
-        total_pages=total_pages
-    )
 
 @app.route('/search')
 def search():
