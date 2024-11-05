@@ -93,10 +93,6 @@ tbody tr:nth-child(even) {
     transition: background-color 0.3s ease;
 }
 
-.manage-button.main {
-    background-color: #3498db;
-}
-
 .manage-button.detail {
     background-color: #f39c12;
 }

@@ -243,3 +243,183 @@
 2024-11-06 00:21:56,845 | INFO | 95181 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
 2024-11-06 00:21:56,855 | INFO | 95181 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
 2024-11-06 00:21:57,926 | INFO | 90842 |  * Restarting with watchdog (fsevents)
+2024-11-06 00:25:20,845 | INFO | 97423 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2024-11-06 00:25:20,846 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 00:25:21,730 | WARNING | 97430 |  * Debugger is active!
+2024-11-06 00:25:21,748 | INFO | 97430 |  * Debugger PIN: 576-773-100
+2024-11-06 00:25:37,477 | INFO | 97430 | 127.0.0.1 - - [06/Nov/2024 00:25:37] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:27:14,875 | INFO | 97430 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 00:27:15,941 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 00:27:17,074 | WARNING | 97610 |  * Debugger is active!
+2024-11-06 00:27:17,091 | INFO | 97610 |  * Debugger PIN: 576-773-100
+2024-11-06 00:27:34,444 | INFO | 97610 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 00:27:35,513 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 00:27:36,568 | WARNING | 97672 |  * Debugger is active!
+2024-11-06 00:27:36,586 | INFO | 97672 |  * Debugger PIN: 576-773-100
+2024-11-06 00:27:47,385 | INFO | 97672 | 127.0.0.1 - - [06/Nov/2024 00:27:47] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:27:48,563 | INFO | 97672 | 127.0.0.1 - - [06/Nov/2024 00:27:48] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:27:49,983 | INFO | 97672 | 127.0.0.1 - - [06/Nov/2024 00:27:49] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:27:50,655 | INFO | 97672 | 127.0.0.1 - - [06/Nov/2024 00:27:50] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:27:51,327 | INFO | 97672 | 127.0.0.1 - - [06/Nov/2024 00:27:51] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:27:55,247 | INFO | 97672 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 00:27:56,342 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 00:27:57,318 | WARNING | 97719 |  * Debugger is active!
+2024-11-06 00:27:57,334 | INFO | 97719 |  * Debugger PIN: 576-773-100
+2024-11-06 00:29:39,193 | INFO | 97719 | 127.0.0.1 - - [06/Nov/2024 00:29:39] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:31:45,704 | INFO | 97719 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 00:31:45,714 | INFO | 97719 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 00:31:46,781 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 00:31:47,874 | WARNING | 98139 |  * Debugger is active!
+2024-11-06 00:31:47,891 | INFO | 98139 |  * Debugger PIN: 576-773-100
+2024-11-06 00:31:51,091 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:31:51] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:34:09,434 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:34:09] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:34:12,808 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:34:12] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 00:37:11,706 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:37:11] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 00:37:20,763 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:37:20] "DELETE /manage/delete/7 HTTP/1.1" 200 -
+2024-11-06 00:37:22,284 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:37:22] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:37:26,225 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:37:26] "DELETE /manage/delete/17 HTTP/1.1" 200 -
+2024-11-06 00:37:27,232 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:37:27] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:42:46,176 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:42:46] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:42:53,898 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:42:53] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:43:09,607 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:09] "GET / HTTP/1.1" 200 -
+2024-11-06 00:43:09,655 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:09] "GET /static/signup.css HTTP/1.1" 200 -
+2024-11-06 00:43:12,122 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:12] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-11-06 00:43:12,133 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:12] "GET /home HTTP/1.1" 200 -
+2024-11-06 00:43:12,144 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:12] "GET /static/styles.css HTTP/1.1" 200 -
+2024-11-06 00:43:12,144 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:12] "GET /static/images/1/1.png HTTP/1.1" 200 -
+2024-11-06 00:43:12,145 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:12] "GET /static/images/2/1.png HTTP/1.1" 200 -
+2024-11-06 00:43:12,154 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:12] "GET /static/images/3/1.png HTTP/1.1" 200 -
+2024-11-06 00:43:12,155 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:12] "GET /static/images/4/1.png HTTP/1.1" 200 -
+2024-11-06 00:43:12,159 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:12] "GET /static/images/5/1.png HTTP/1.1" 200 -
+2024-11-06 00:43:12,160 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:12] "GET /static/images/6/1.png HTTP/1.1" 200 -
+2024-11-06 00:43:17,015 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:43:17] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:44:29,499 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:44:29] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:44:30,553 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:44:30] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:44:41,854 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:44:41] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 00:44:55,259 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:44:55] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 00:45:28,446 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:45:28] "POST /manage/add HTTP/1.1" 200 -
+2024-11-06 00:45:57,866 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:45:57] "POST /manage/add HTTP/1.1" 200 -
+2024-11-06 00:46:07,514 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:46:07] "POST /manage/add HTTP/1.1" 200 -
+2024-11-06 00:46:14,835 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:46:14] "POST /manage/add HTTP/1.1" 200 -
+2024-11-06 00:46:16,629 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:46:16] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:52:58,221 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:52:58] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:53:48,266 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:53:48] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:54:25,235 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:54:25] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:54:53,804 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:54:53] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:55:13,068 | INFO | 98139 | 127.0.0.1 - - [06/Nov/2024 00:55:13] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 00:58:33,626 | INFO | 98139 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 00:58:34,730 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 00:58:35,829 | WARNING | 1263 |  * Debugger is active!
+2024-11-06 00:58:35,848 | INFO | 1263 |  * Debugger PIN: 576-773-100
+2024-11-06 00:58:44,927 | INFO | 1263 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 00:58:45,992 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 00:58:47,005 | WARNING | 1296 |  * Debugger is active!
+2024-11-06 00:58:47,023 | INFO | 1296 |  * Debugger PIN: 576-773-100
+2024-11-06 00:58:48,910 | INFO | 1296 | 127.0.0.1 - - [06/Nov/2024 00:58:48] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:58:50,653 | INFO | 1296 | 127.0.0.1 - - [06/Nov/2024 00:58:50] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 00:59:16,031 | INFO | 1296 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 00:59:17,118 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 00:59:18,162 | WARNING | 1380 |  * Debugger is active!
+2024-11-06 00:59:18,179 | INFO | 1380 |  * Debugger PIN: 576-773-100
+2024-11-06 00:59:20,622 | INFO | 1380 | 127.0.0.1 - - [06/Nov/2024 00:59:20] "GET /manage HTTP/1.1" 200 -
+2024-11-06 00:59:21,843 | INFO | 1380 | 127.0.0.1 - - [06/Nov/2024 00:59:21] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:00:10,435 | INFO | 1380 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 01:00:11,515 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 01:00:12,544 | WARNING | 1495 |  * Debugger is active!
+2024-11-06 01:00:12,560 | INFO | 1495 |  * Debugger PIN: 576-773-100
+2024-11-06 01:00:13,423 | INFO | 1495 | 127.0.0.1 - - [06/Nov/2024 01:00:13] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:01:04,157 | INFO | 1495 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 01:01:05,243 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 01:01:06,148 | WARNING | 1580 |  * Debugger is active!
+2024-11-06 01:01:06,164 | INFO | 1580 |  * Debugger PIN: 576-773-100
+2024-11-06 01:01:06,752 | INFO | 1580 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 01:01:07,822 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 01:01:08,800 | WARNING | 1589 |  * Debugger is active!
+2024-11-06 01:01:08,817 | INFO | 1589 |  * Debugger PIN: 576-773-100
+2024-11-06 01:01:08,852 | INFO | 1589 | 127.0.0.1 - - [06/Nov/2024 01:01:08] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:01:10,522 | INFO | 1589 | 127.0.0.1 - - [06/Nov/2024 01:01:10] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:01:26,033 | INFO | 1589 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 01:01:26,041 | INFO | 1589 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 01:01:27,122 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 01:01:28,169 | WARNING | 1676 |  * Debugger is active!
+2024-11-06 01:01:28,187 | INFO | 1676 |  * Debugger PIN: 576-773-100
+2024-11-06 01:03:05,728 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:03:05] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:03:22,555 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:03:22] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:03:58,990 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:03:58] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:05:05,847 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:05] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:05:08,023 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:08] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:05:20,875 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:20] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:05:30,364 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:30] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:05:48,149 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:48] "GET / HTTP/1.1" 200 -
+2024-11-06 01:05:48,197 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:48] "GET /static/signup.css HTTP/1.1" 200 -
+2024-11-06 01:05:50,405 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:50] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-11-06 01:05:50,417 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:50] "GET /home HTTP/1.1" 200 -
+2024-11-06 01:05:50,429 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:50] "GET /static/styles.css HTTP/1.1" 200 -
+2024-11-06 01:05:50,429 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:50] "GET /static/images/1/1.png HTTP/1.1" 200 -
+2024-11-06 01:05:50,429 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:50] "GET /static/images/2/1.png HTTP/1.1" 200 -
+2024-11-06 01:05:50,441 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:50] "GET /static/images/3/1.png HTTP/1.1" 200 -
+2024-11-06 01:05:50,441 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:50] "GET /static/images/5/1.png HTTP/1.1" 200 -
+2024-11-06 01:05:50,442 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:50] "GET /static/images/6/1.png HTTP/1.1" 200 -
+2024-11-06 01:05:50,442 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:50] "GET /static/images/4/1.png HTTP/1.1" 200 -
+2024-11-06 01:05:57,136 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:05:57] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:06:00,803 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:06:00] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:06:41,120 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:06:41] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:07:27,307 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:27] "DELETE /manage/delete/19 HTTP/1.1" 200 -
+2024-11-06 01:07:28,781 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:28] "[35m[1mGET /manage HTTP/1.1[0m" 500 -
+2024-11-06 01:07:28,793 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:28] "GET /manage?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2024-11-06 01:07:28,795 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:28] "GET /manage?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2024-11-06 01:07:28,822 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:28] "GET /manage?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2024-11-06 01:07:28,823 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:28] "GET /manage?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2024-11-06 01:07:28,832 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:28] "GET /manage?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2024-11-06 01:07:44,089 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:44] "GET / HTTP/1.1" 200 -
+2024-11-06 01:07:44,136 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:44] "GET /static/signup.css HTTP/1.1" 200 -
+2024-11-06 01:07:53,519 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:53] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-11-06 01:07:53,525 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:53] "GET /home HTTP/1.1" 200 -
+2024-11-06 01:07:53,536 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:53] "GET /static/styles.css HTTP/1.1" 200 -
+2024-11-06 01:07:53,536 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:53] "GET /static/images/1/1.png HTTP/1.1" 200 -
+2024-11-06 01:07:53,537 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:53] "GET /static/images/2/1.png HTTP/1.1" 200 -
+2024-11-06 01:07:53,546 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:53] "GET /static/images/3/1.png HTTP/1.1" 200 -
+2024-11-06 01:07:53,546 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:53] "GET /static/images/4/1.png HTTP/1.1" 200 -
+2024-11-06 01:07:53,550 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:53] "GET /static/images/5/1.png HTTP/1.1" 200 -
+2024-11-06 01:07:53,550 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:53] "GET /static/images/6/1.png HTTP/1.1" 200 -
+2024-11-06 01:07:59,684 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:59] "GET /남전1번국밥/detail HTTP/1.1" 200 -
+2024-11-06 01:07:59,692 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:07:59] "GET /static/css/manage_menu.css HTTP/1.1" 200 -
+2024-11-06 01:08:15,936 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:08:15] "POST /남전1번국밥/image HTTP/1.1" 200 -
+2024-11-06 01:08:20,427 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:08:20] "GET /남전1번국밥/detail HTTP/1.1" 200 -
+2024-11-06 01:08:49,327 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:08:49] "POST /남전1번국밥/detail HTTP/1.1" 200 -
+2024-11-06 01:08:55,061 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:08:55] "POST /남전1번국밥/detail HTTP/1.1" 200 -
+2024-11-06 01:08:59,358 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:08:59] "GET /home HTTP/1.1" 200 -
+2024-11-06 01:09:05,152 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:09:05] "GET /남전1번국밥/detail HTTP/1.1" 200 -
+2024-11-06 01:12:05,385 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:12:05] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:12:11,608 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:12:11] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:12:16,727 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:12:16] "GET /home HTTP/1.1" 200 -
+2024-11-06 01:12:18,452 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:12:18] "GET /남전1번국밥/detail HTTP/1.1" 200 -
+2024-11-06 01:12:20,119 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:12:20] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:12:26,483 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:12:26] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:14:11,799 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:14:11] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:14:59,071 | INFO | 1676 | 127.0.0.1 - - [06/Nov/2024 01:14:59] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:15:37,637 | INFO | 1676 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 01:15:38,726 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 01:15:39,866 | WARNING | 3432 |  * Debugger is active!
+2024-11-06 01:15:39,884 | INFO | 3432 |  * Debugger PIN: 576-773-100
+2024-11-06 01:15:43,753 | INFO | 3432 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 01:15:44,821 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 01:15:45,895 | WARNING | 3450 |  * Debugger is active!
+2024-11-06 01:15:45,912 | INFO | 3450 |  * Debugger PIN: 576-773-100
+2024-11-06 01:15:45,952 | INFO | 3450 | 127.0.0.1 - - [06/Nov/2024 01:15:45] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:16:05,006 | INFO | 3450 | 127.0.0.1 - - [06/Nov/2024 01:16:05] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:18:45,425 | INFO | 3450 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/manage.py', reloading
+2024-11-06 01:18:46,505 | INFO | 97423 |  * Restarting with watchdog (fsevents)
+2024-11-06 01:18:47,553 | WARNING | 3722 |  * Debugger is active!
+2024-11-06 01:18:47,571 | INFO | 3722 |  * Debugger PIN: 576-773-100
+2024-11-06 01:19:21,531 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:19:21] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:19:38,967 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:19:38] "GET /home HTTP/1.1" 200 -
+2024-11-06 01:19:40,632 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:19:40] "GET /남전1번국밥/detail HTTP/1.1" 200 -
+2024-11-06 01:19:42,203 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:19:42] "GET /home HTTP/1.1" 200 -
+2024-11-06 01:19:43,881 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:19:43] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:19:51,394 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:19:51] "[35m[1mGET /manage/edit_data/3 HTTP/1.1[0m" 500 -
+2024-11-06 01:21:31,452 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:21:31] "GET /manage HTTP/1.1" 200 -
+2024-11-06 01:21:32,843 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:21:32] "[35m[1mGET /manage/edit_data/1 HTTP/1.1[0m" 500 -
+2024-11-06 01:23:23,542 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:23:23] "GET /home HTTP/1.1" 200 -
+2024-11-06 01:23:25,382 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:23:25] "GET /남전1번국밥/detail HTTP/1.1" 200 -
+2024-11-06 01:23:52,507 | INFO | 3722 | 127.0.0.1 - - [06/Nov/2024 01:23:52] "POST /남전1번국밥/detail HTTP/1.1" 200 -
