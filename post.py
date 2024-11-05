@@ -23,15 +23,28 @@ def store_rate(store_id):
     review = ReviewDAO().get_rate(store_id)
     return f'update OK : {review}'
 
-@post_bp.route('/new_review/<int:store_id>', methods=['POST'])
-def add_review(store_id):
+@post_bp.route('/new_review/<int:store_id>/<int:page>', methods=['POST'])
+def add_review(store_id,page):
     user_id = session['userInfo']['userId']
     image = request.form.get('image')
-    review = ReviewDAO.insert_review( user_id, store_id, request.form['contents'], request.form['rate'], image)
+    reviews = ReviewDAO.insert_review( user_id, store_id, request.form['contents'], request.form['rate'], image)
     store = StoreDAO().get_store_by_id(store_id)
     images = ImageDAO().get_images_by_store_id(store_id)
     menus = MenuDAO().get_menus_by_store_id(store_id)
-    return render_template('list/list_detail.html', store=store, images=images, menus=menus, reviews=review)
+
+    per_page = 9
+    total_pages = (len(reviews) - 1) // per_page + 1
+    paginated_reviews = reviews[(page - 1) * per_page: page * per_page]  # 해당 페이지의 리뷰만 가져오기
+    return render_template(
+        'list/list_detail.html', 
+        store=store, 
+        images=images, 
+        menus=menus, 
+        reviews=reviews, 
+        paginated_reviews=paginated_reviews,
+        page=page,
+        total_pages=total_pages
+    )
 
 @post_bp.route('/update/<int:store_id>/<int:review_id>', methods=['POST'])
 def update_review(store_id, review_id):
