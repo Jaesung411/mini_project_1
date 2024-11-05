@@ -63,7 +63,7 @@ class ReviewDAO:
         ret = []
         cursor = DBConnect.get_db().cursor()
 
-        sql_select = 'SELECT AVG(RATE) FROM REVIEW WHERE STORE_ID = %s ORDER BY REVIEW_ID DESC'
+        sql_select = 'SELECT ROUND(AVG(RATE),1) FROM REVIEW WHERE STORE_ID = %s ORDER BY REVIEW_ID DESC'
         cursor.execute(sql_select, (store_id,))
 
         rate = cursor.fetchone()
