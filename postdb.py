@@ -81,7 +81,7 @@ class ReviewDAO:
 
         store = StoreDAO.get_store_by_id(store_id)
         StoreDAO.update_store_rate(store['store_id'], ReviewDAO.get_rate(store_id))
-        # todo: update sotre pk issue
+
 
         ret = ReviewDAO.get_reviews(store_id)
         return ret
@@ -93,6 +93,10 @@ class ReviewDAO:
         sql_update = 'UPDATE REVIEW SET CONTENTS=%s, RATE=%s, IMAGE=%s WHERE REVIEW_ID=%s'
         ret_cnt = cursor.execute(sql_update, (contents, rate, image, review_id))
         DBConnect.get_db().close()
+
+        store = StoreDAO.get_store_by_id(store_id)
+        StoreDAO.update_store_rate(store['store_id'], ReviewDAO.get_rate(store_id))
+
         ret = ReviewDAO.get_reviews(store_id)
         return ret
     
@@ -103,5 +107,8 @@ class ReviewDAO:
         sql_delete = 'DELETE FROM REVIEW WHERE REVIEW_ID=%s'
         ret_cnt = cursor.execute(sql_delete, (review_id))
         DBConnect.get_db().close()
+
+        store = StoreDAO.get_store_by_id(store_id)
+        StoreDAO.update_store_rate(store['store_id'], ReviewDAO.get_rate(store_id))
         ret = ReviewDAO.get_reviews(store_id)
         return ret

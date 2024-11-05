@@ -124,13 +124,31 @@ def add_review(store_id, page):
         flash('리뷰 등록 중 오류가 발생했습니다. 다시 시도해주세요.', 'error')
         return redirect(url_for('store.view_store', store_id=store_id, page=page))
 
-@post_bp.route('/update/<int:store_id>/<int:review_id>', methods=['POST'])
-def update_review(store_id, review_id):
-    review = ReviewDAO.update_review(request.form['contents'], request.form['rate'], review_id, store_id, request.form['image'])
+@post_bp.route('/update/<int:store_id>/<int:review_id>/<int:page>', methods=['POST'])
+def update_review(store_id, review_id, page):
+    image = request.form.get('image')
+    reviews = ReviewDAO.update_review(request.form['contents'], request.form['rate'], review_id, store_id, image)
+    
     store = StoreDAO().get_store_by_id(store_id)
     images = ImageDAO().get_images_by_store_id(store_id)
     menus = MenuDAO().get_menus_by_store_id(store_id)
-    return render_template('list/list_detail.html', store=store, images=images, menus=menus, reviews=review)
+    reviews = ReviewDAO().get_reviews(store_id)
+
+    per_page = 9
+    total_pages = (len(reviews) - 1) // per_page + 1
+    paginated_reviews = reviews[(page - 1) * per_page: page * per_page]  # 해당 페이지의 리뷰만 가져오기
+
+    return render_template(
+            'list/list_detail.html',
+            store=store,
+            images=images,
+            menus=menus,
+            reviews=reviews,
+            paginated_reviews=paginated_reviews,
+            page=page,
+            total_pages=total_pages
+        )
+
 
 @post_bp.route('/delete/<int:store_id>/<int:review_id>/<int:page>', methods=['POST'])
 def delete_review(store_id, review_id,page):
@@ -145,15 +163,15 @@ def delete_review(store_id, review_id,page):
     paginated_reviews = reviews[(page - 1) * per_page: page * per_page]  # 해당 페이지의 리뷰만 가져오기
 
     return render_template(
-        'list/list_detail.html', 
-        store=store, 
-        images=images, 
-        menus=menus, 
-        reviews=reviews, 
-        paginated_reviews=paginated_reviews,
-        page=page,
-        total_pages=total_pages
-    )
+            'list/list_detail.html',
+            store=store,
+            images=images,
+            menus=menus,
+            reviews=reviews,
+            paginated_reviews=paginated_reviews,
+            page=page,
+            total_pages=total_pages
+        )
 
 
 # if __name__ == '__main__':
