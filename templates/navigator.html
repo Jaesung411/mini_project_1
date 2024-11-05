@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <!-- 로고 -->
+      <h1 class="navbar-brand" style="font-size: 2.5rem; font-weight: bold;">맛점</h1>
+      <!-- <h1 class="navbar-brand">맛점</h1> -->
+
+      <!-- 토글 버튼 (모바일 뷰에서 메뉴를 접고 펼치기 위해 사용) -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- 네비게이션 메뉴 -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item mt-2 ms-3">
+                 {{session['userInfo']['name']}} 님 환영합니다 !
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/chat">Chatting</a>
+            </li>
+          <li class="nav-item">
+            {%if session['userInfo']['role'] == '0'%}
+            <a class="nav-link" href="/manage">Admin</a>
+            {%else%}
+            <a class="nav-link" href="/mypage">Mypage</a>
+            {%endif%}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+
+        <!-- 검색창 -->
+        <form class="d-flex" action="/search" role="search">
+          <input class="form-control me-2" type="search" name="query" placeholder="Search for food" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+      </div>
+    </div>
+  </nav>

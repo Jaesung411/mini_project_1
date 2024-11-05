@@ -1,0 +1,123 @@
+<!-- 회원 관리 탭 -->
+<div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
+    <div class="mt-4">
+        <h4>회원 목록</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>이메일</th>
+                    <th>이름</th>
+                    <th>닉네임</th>
+                    <th>관리</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for user in users%}
+                <tr>
+                    <td>{{user[1]}}</td>
+                    <td>{{user[3]}}</td>
+                    <td>{{user[4]}}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editMember('{{ user[0] }}', '{{ user[1] }}', '{{ user[3] }}', '{{ user[4] }}')">수정</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteMember('{{user[0]}}','{{user[3]}}')">삭제</button>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- 회원 수정 모달 -->
+<div class="modal fade" id="editMemberModal" tabindex="-1" aria-labelledby="editMemberModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="editMemberModalLabel">회원 수정</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <form id="editMemberForm">
+            <div class="mb-3">
+                <label for="editEmail" class="form-label">이메일</label>
+                <input type="email" class="form-control" id="editEmail">
+            </div>
+            <div class="mb-3">
+                <label for="editName" class="form-label">이름</label>
+                <input type="text" class="form-control" id="editName">
+            </div>
+            <div class="mb-3">
+                <label for="editNickname" class="form-label">닉네임</label>
+                <input type="text" class="form-control" id="editNickname">
+            </div>
+            <input type="hidden" id="editMemberId">
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" onclick="saveChanges()">저장</button>
+    </div>
+</div>
+</div>
+<script>
+
+    function editMember(userId, email, name, nickname) {
+        // 모달 입력 필드에 기존 데이터 채우기
+        document.getElementById('editMemberId').value = userId;
+        document.getElementById('editEmail').value = email;
+        document.getElementById('editName').value = name;
+        document.getElementById('editNickname').value = nickname;
+
+        // 모달 창 열기
+        new bootstrap.Modal(document.getElementById('editMemberModal')).show();
+    }
+    // 변경 사항 저장 함수
+    function saveChanges() {
+        // 수정된 데이터를 가져오기
+        const userId = document.getElementById('editMemberId').value;
+        const email = document.getElementById('editEmail').value;
+        const name = document.getElementById('editName').value;
+        const nickname = document.getElementById('editNickname').value;
+        
+        // 서버에 수정 요청을 보내기 위한 fetch 호출 예시
+        fetch(`/update_member/${userId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, name, nickname })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("회원 정보가 수정되었습니다.");
+                // 페이지 새로고침 또는 수정된 데이터만 업데이트
+                location.reload();
+            } else {
+                alert("수정에 실패했습니다.");
+            }
+        });
+    }
+    function deleteMember(userId, username) {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+            alert("회원 삭제 기능입니다. 이름: " + username);
+            // 삭제 기능 구현
+
+            fetch(`/delete_member/${userId}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("회원 정보가 삭제되었습니다.");
+                    location.reload(); // 페이지 새로고침으로 목록 업데이트
+                } else {
+                    alert("삭제에 실패했습니다.");
+                }
+            });
+        }
+        
+    }// 수정 버튼 클릭 시 호출될 함수
+</script>

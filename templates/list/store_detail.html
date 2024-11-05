@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ store['name'] }} 상세 페이지</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/store_detail.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/store.css') }}">
 </head>
 <body>
     <div class="container">
         <div class="button-group">
-            <a href="/" class="manage-button main">메인 페이지</a> <!-- 메인 페이지 버튼 -->
-            <a href="/{{ store['name'] }}/image" class="manage-button detail">이미지 관리</a> <!-- 이미지 관리 버튼 추가 -->
+            <a href="/home" class="manage-button main">메인 페이지</a>
+            <a href="/{{ store['name'] }}/image" class="manage-button detail">이미지 관리</a>
     </div>
         <h2>{{ store['name'] }}</h2>
         <h3>메뉴 관리</h3>

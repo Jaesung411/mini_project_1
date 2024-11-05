@@ -10,7 +10,7 @@ class DBConnect:
             host='127.0.0.1',
             user='user1',
             passwd='qwer1234',
-            db='proj',
+            db='mini_proj',
             charset='utf8',
             autocommit=True
         )
@@ -38,7 +38,21 @@ class MenuDAO:
             DBConnect.get_db().close()
             
         return ret
-
+    
+    # 가게 id 불러오기
+    def get_menus_by_store_id(self, store_id):
+        ret = []
+        cursor = DBConnect.get_db().cursor()
+        sql_select = 'SELECT menu_name, price FROM menu WHERE store_id = %s'
+        cursor.execute(sql_select, (store_id,))
+        rows = cursor.fetchall()
+        for row in rows:
+            ret.append({
+                'menu_name': row[0],
+                'price': row[1]
+            })
+        return ret
+    
     # insert
     def insert_menu(self, menu_id, store_id, menu_name, price):
         cursor = DBConnect.get_db().cursor()
@@ -63,30 +77,6 @@ class MenuDAO:
         DBConnect.get_db().close()
         return f'delete OK : {ret_cnt}'
     
-    def get_max_menu_id(self):
-        cursor = DBConnect.get_db().cursor()
-        sql_select = 'SELECT MAX(menu_id) FROM menu'
-        cursor.execute(sql_select)
-        result = cursor.fetchone()
-        print("Max menu_id result:", result)  # 디버깅용
-        return result[0] if result and result[0] is not None else 0
-    
-        # 가게 id 불러오기
-    def get_menus_by_store_id(self, store_id):
-        ret = []
-        cursor = DBConnect.get_db().cursor()
-        sql_select = 'SELECT menu_id, store_id, menu_name, price FROM menu WHERE store_id = %s'
-        cursor.execute(sql_select, (store_id,))
-        rows = cursor.fetchall()
-        for row in rows:
-            ret.append({
-                'menu_id': row[0],
-                'store_id': row[1],
-                'menu_name': row[2],
-                'price': row[3]
-            })
-        return ret
-        
 if __name__=='__main__':
     # print (DBConnect.get_db())
     # print (StoreDAO().insert_menu(22, '5', '고로아케', '10,000',))
