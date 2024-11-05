@@ -1,0 +1,34 @@
+2024-11-05 18:55:19,447 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2024-11-05 18:55:19,447 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2024-11-05 18:55:20,623 - werkzeug - WARNING -  * Debugger is active!
+2024-11-05 18:55:20,644 - werkzeug - INFO -  * Debugger PIN: 576-773-100
+2024-11-05 18:55:29,796 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2024 18:55:29] "GET / HTTP/1.1" 200 -
+2024-11-05 18:55:29,838 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2024 18:55:29] "GET /static/signup.css HTTP/1.1" 200 -
+2024-11-05 18:55:29,840 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2024 18:55:29] "[33mGET /static/scripts.js HTTP/1.1[0m" 404 -
+2024-11-05 18:55:47,566 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2024 18:55:47] "GET /signup HTTP/1.1" 200 -
+2024-11-05 18:58:36,871 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2024-11-05 18:58:36,872 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2024-11-05 18:58:38,036 - werkzeug - WARNING -  * Debugger is active!
+2024-11-05 18:58:38,059 - werkzeug - INFO -  * Debugger PIN: 576-773-100
+2024-11-05 18:58:55,736 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2024 18:58:55] "GET / HTTP/1.1" 200 -
+2024-11-05 18:58:55,770 - werkzeug - INFO - 127.0.0.1 - - [05/Nov/2024 18:58:55] "[33mGET /static/scripts.js HTTP/1.1[0m" 404 -
+2024-11-05 19:00:01,250 | INFO | 77470 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2024-11-05 19:00:01,250 | INFO | 77470 |  * Restarting with watchdog (fsevents)
+2024-11-05 19:00:02,444 | WARNING | 77478 |  * Debugger is active!
+2024-11-05 19:00:02,464 | INFO | 77478 |  * Debugger PIN: 576-773-100
+2024-11-05 19:00:06,456 | INFO | 77478 | 127.0.0.1 - - [05/Nov/2024 19:00:06] "GET / HTTP/1.1" 200 -
+2024-11-05 19:00:06,469 | INFO | 77478 | 127.0.0.1 - - [05/Nov/2024 19:00:06] "[33mGET /static/scripts.js HTTP/1.1[0m" 404 -
+2024-11-05 19:00:58,254 | INFO | 77478 | 127.0.0.1 - - [05/Nov/2024 19:00:58] "GET / HTTP/1.1" 200 -
+2024-11-05 19:01:19,128 | INFO | 77478 | 127.0.0.1 - - [05/Nov/2024 19:01:19] "GET /signup HTTP/1.1" 200 -
+2024-11-05 19:04:45,815 | INFO | 77478 | 127.0.0.1 - - [05/Nov/2024 19:04:45] "GET /signup HTTP/1.1" 200 -
+2024-11-05 19:08:31,750 | INFO | 77478 |  * Detected change in '/Users/jason/Documents/GitHub/mini_project_1/user_admin.py', reloading
+2024-11-05 19:08:32,829 | INFO | 77470 |  * Restarting with watchdog (fsevents)
+2024-11-05 19:08:34,248 | WARNING | 78401 |  * Debugger is active!
+2024-11-05 19:08:34,269 | INFO | 78401 |  * Debugger PIN: 576-773-100
+2024-11-05 19:08:41,875 | INFO | 78472 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2024-11-05 19:08:41,875 | INFO | 78472 |  * Restarting with watchdog (fsevents)
+2024-11-05 19:08:43,103 | WARNING | 78477 |  * Debugger is active!
+2024-11-05 19:08:43,124 | INFO | 78477 |  * Debugger PIN: 576-773-100
+2024-11-05 19:08:46,943 | INFO | 78477 | 127.0.0.1 - - [05/Nov/2024 19:08:46] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-11-05 19:08:46,965 | INFO | 78477 | 127.0.0.1 - - [05/Nov/2024 19:08:46] "GET /home HTTP/1.1" 200 -
+2024-11-05 19:09:07,969 | INFO | 78477 | 127.0.0.1 - - [05/Nov/2024 19:09:07] "GET /signup HTTP/1.1" 200 -
