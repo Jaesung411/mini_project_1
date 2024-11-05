@@ -25,9 +25,9 @@ def store_rate(store_id):
 
 @post_bp.route('/new_review/<int:store_id>', methods=['POST'])
 def add_review(store_id):
-    print("!!!!!!"+str(request.form))
     user_id = session['userInfo']['userId']
-    review = ReviewDAO.insert_review( user_id, store_id, request.form['contents'], request.form['rate'], request.form['image'])
+    image = request.form.get('image')
+    review = ReviewDAO.insert_review( user_id, store_id, request.form['contents'], request.form['rate'], image)
     store = StoreDAO().get_store_by_id(store_id)
     images = ImageDAO().get_images_by_store_id(store_id)
     menus = MenuDAO().get_menus_by_store_id(store_id)
