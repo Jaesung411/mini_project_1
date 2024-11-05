@@ -1,6 +1,6 @@
 from flask import *
 from DB.userdb import *
-
+from werkzeug.security import check_password_hash, generate_password_hash
 mypage_bp = Blueprint('mypage', __name__)
 
 @mypage_bp.route('/update_profile',methods=['POST'])
@@ -20,6 +20,28 @@ def update_profile():
         flash("프로필 업데이트에 실패했습니다. 다시 시도해 주세요.", "danger")  # 실패 메시지 전달
         print(f"Error updating profile: {e}")
 
+    return redirect(url_for("manage.mypage"))
+
+@mypage_bp.route('/update_pwd',methods=['POST'])
+def update_pwd():
+    input_current_pwd = request.form['current_password']
+    new_pwd = request.form['new_password']
+    confirm_pwd = request.form['confirm_new_password']
+
+    userinfo = userDAO().authenicate(session['userInfo']['email'])
+    cpwd = userinfo[2]
+
+    if not check_password_hash(cpwd, input_current_pwd):
+        flash("현재 비밀번호와 다릅니다.")
+    else:
+        if new_pwd != confirm_pwd:
+            flash("확인 비밀번호가 다릅니다.")
+        else:
+            new_hashed_password = generate_password_hash(new_pwd)
+            userDAO().update_pwd(session['userInfo']['userId'],new_hashed_password)
+
+
+    # return redirect(url_for("welcome"))
     return redirect(url_for("manage.mypage"))
 
 @mypage_bp.route('/delete_account',methods=['POST'])

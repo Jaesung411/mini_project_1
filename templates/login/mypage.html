@@ -44,9 +44,13 @@
                     <button type="submit" class="btn btn-primary">정보 수정</button>
                 </form>
                 <br>
-                <button type="submit" class="btn btn-primary">비밀번호 변경</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePwdModal">
+                    비밀번호 변경
+                </button>
             </div>
         </div>
+
+        {% include 'login/change_pwd.html' %}
 
         <!-- 리뷰 내역 섹션 -->
         <div class="card mb-4">

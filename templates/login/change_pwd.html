@@ -1,0 +1,31 @@
+<!-- 비밀번호 변경 모달 -->
+<div class="modal fade" id="changePwdModal" tabindex="-1" aria-labelledby="changePwdModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changePwdModalLabel">비밀번호 변경</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/update_pwd" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="currentPwd" class="form-label">현재 비밀번호</label>
+                        <input type="password" class="form-control" id="currentPwd" name="current_password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPwd" class="form-label">새 비밀번호</label>
+                        <input type="password" class="form-control" id="newPwd" name="new_password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmNewPwd" class="form-label">새 비밀번호 확인</label>
+                        <input type="password" class="form-control" id="confirmNewPwd" name="confirm_new_password" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="submit" class="btn btn-primary">비밀번호 변경</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
