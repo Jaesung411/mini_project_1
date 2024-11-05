@@ -80,7 +80,7 @@ class ReviewDAO:
         DBConnect.get_db().commit()
 
         store = StoreDAO.get_store_by_id(store_id)
-        StoreDAO.update_store(store['store_id'], store['name'], store['address'], store['image'], ReviewDAO.get_rate(store_id), store['food_type'])
+        StoreDAO.update_store_rate(store['store_id'], ReviewDAO.get_rate(store_id))
         # todo: update sotre pk issue
 
         ret = ReviewDAO.get_reviews(store_id)

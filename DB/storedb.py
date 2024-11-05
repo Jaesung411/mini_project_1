@@ -93,6 +93,15 @@ class StoreDAO:
         DBConnect.get_db().close()
         return f'update OK : {ret_cnt}'
     
+    # update rate only
+    @staticmethod
+    def update_store_rate(store_id, rate):
+        cursor = DBConnect.get_db().cursor()
+        sql_update = 'UPDATE STORE SET RATE=%s WHERE STORE_ID=%s'
+        ret_cnt = cursor.execute(sql_update, (rate, store_id))
+        DBConnect.get_db().close()
+        return f'update OK : {ret_cnt}'
+    
     # delete
     def delete_store(self, store_id):
         cursor = DBConnect.get_db().cursor()
