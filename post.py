@@ -79,7 +79,7 @@ def add_review(store_id, page):
                 # 파일 저장
                 file_path = os.path.join(UPLOAD_FOLDER, filename)
                 file.save(file_path)
-                image_path = f'/static/uploads/reviews/{filename}'
+                image_path = f'../../static/reviewImg/{filename}'
 
         # 리뷰 저장
         reviews = ReviewDAO.insert_review(

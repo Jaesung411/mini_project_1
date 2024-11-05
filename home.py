@@ -63,6 +63,8 @@ def store_detail(store_name):
     menus = MenuDAO().get_menus_by_store_id(store['store_id'])
     reviews = ReviewDAO().get_reviews(store['store_id'])
 
+    print(reviews)
+
     page = request.args.get('page', 1, type=int)
     per_page = 9
     total_pages = (len(reviews) - 1) // per_page + 1
