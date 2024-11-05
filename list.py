@@ -71,6 +71,12 @@ def manage_menu(store_name):
             menu_id = request.form.get('menu_id')
             menu_dao.delete_menu(menu_id)
             flash('메뉴가 삭제되었습니다.')
+        else:
+            menu_id = request.form.get('menu_id')
+            menu_name = request.form.get('menu_name')
+            menu_price = request.form.get('price')
+            
+            menu_dao.update_menu(menu_id,store_id,menu_name,menu_price)
     images = ImageDAO().get_images_by_store_id(store_id)
     menus = MenuDAO().get_menus_by_store_id(store_id)
     return render_template('list/store_detail.html', store=store, images=images, menus=menus)
@@ -87,7 +93,7 @@ def manage_images(store_name):
         return redirect('/home')
     
     store_id = store['store_id']
-    
+    app.config['UPLOAD_FOLDER'] = 'static/images'
     if request.method == 'POST':
         action = request.form.get('action')  # action 변수를 여기서 초기화
         
@@ -95,7 +101,7 @@ def manage_images(store_name):
             if 'image' in request.files:
                 image_file = request.files['image']
                 image_id = image_dao.get_max_image_id() + 1  # ID는 DB에서 최대값을 가져와서 생성
-                path = f'images/{store_id}/{image_file.filename}'  # 저장할 경로 설정
+                path = f'{store_id}/{image_file.filename}'  # 저장할 경로 설정
                 image_file.save(os.path.join(app.config['UPLOAD_FOLDER'], path))  # 이미지 저장
                 image_dao.insert_image(store_id, path)  # 수정된 메서드 호출
                 flash('이미지가 추가되었습니다.')
@@ -119,4 +125,4 @@ def manage_images(store_name):
                 flash('이미지가 수정되었습니다.')
     
     images = image_dao.get_images_by_store_id(store_id)
-    return render_template('list/store_image.html', store=store, images=images)
+    return render_template('list/store_detail.html', store=store, images=images)
