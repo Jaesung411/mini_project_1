@@ -1,5 +1,5 @@
 from flask import *
-import userdb
+import DB.userdb
 
 login_bp = Blueprint('login', __name__)
 

@@ -85,6 +85,16 @@ class ImageDAO:
         ret_cnt = cursor.execute(sql_delete, (image_id))
         DBConnect.get_db().close()
         return f'delete OK : {ret_cnt}'
+
+    def get_max_image_id(self):
+        connection = DBConnect.get_db()
+        cursor = connection.cursor()
+        sql_select = 'SELECT MAX(image_id) FROM image'
+        cursor.execute(sql_select)
+        result = cursor.fetchone()
+        cursor.close()
+        return result[0] if result and result[0] is not None else 0
+    
     
 if __name__=='__main__':
     # print (DBConnect.get_db())

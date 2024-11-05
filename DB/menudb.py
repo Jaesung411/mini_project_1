@@ -77,6 +77,14 @@ class MenuDAO:
         DBConnect.get_db().close()
         return f'delete OK : {ret_cnt}'
     
+    # 추가한 것
+    def get_max_menu_id(self):
+        cursor = DBConnect.get_db().cursor()
+        sql_select = 'SELECT MAX(menu_id) FROM menu'
+        cursor.execute(sql_select)
+        result = cursor.fetchone()
+        return result[0] if result and result[0] is not None else 0  # None 체크 추가
+    
 if __name__=='__main__':
     # print (DBConnect.get_db())
     # print (StoreDAO().insert_menu(22, '5', '고로아케', '10,000',))
