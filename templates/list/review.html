@@ -50,12 +50,14 @@
                         <img src="{{ url_for('static', filename=review['image']) }}" alt="Review Image" class="img-fluid rounded">
                         {% endif %}
                     </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editReviewModal{{ review['review_id'] }}">수정</button>
-                        <form action="/delete/{{ store['store_id'] }}/{{ review['review_id'] }}/{{ page }}" method="POST" class="d-inline">
-                            <button type="submit" class="btn btn-danger btn-sm">삭제</button>
-                        </form>
-                    </div>
+                    {%if session['userInfo']['role'] == '0' or session['userInfo']['userId'] == review['user_id']%}
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editReviewModal{{ review['review_id'] }}">수정</button>
+                            <form action="/delete/{{ store['store_id'] }}/{{ review['review_id'] }}/{{ page }}" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm">삭제</button>
+                            </form>
+                        </div>
+                    {%endif%}
                 </div>
             </div>
 

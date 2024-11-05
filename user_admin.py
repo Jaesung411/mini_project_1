@@ -40,14 +40,15 @@ def signup():
         passwd = request.form['passwd']
         name = request.form['name']
         nickname = request.form['nickname']
-        auth = request.form['user_auth']
+        # auth = request.form['user_auth']
+        auth = 1
 
         #비밀번호 암호화 
         hashed_password = generate_password_hash(passwd)
         
-        if auth == '-1':
-            flash("권한을 선택하세요")
-            return redirect(url_for('login.signup'))
+        # if auth == '-1':
+        #     flash("권한을 선택하세요")
+        #     return redirect(url_for('login.signup'))
         ret = userdb.userDAO().create_user(email,hashed_password,nickname,name,auth)
       
         if ret[0]:
