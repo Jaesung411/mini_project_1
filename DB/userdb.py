@@ -87,6 +87,18 @@ class userDAO :
         finally:
             UserDBConnect.get_db().close()
     
+    # 회원 비밀번호 수정
+    def update_pwd(self, userno, new_password):
+        try:
+            cursor = UserDBConnect.get_db().cursor()
+            sql = 'UPDATE login SET passwd=%s WHERE userno=%s'
+            ret_cnt = cursor.execute(sql,( new_password, userno))
+        except Exception as e:
+            UserDBConnect.get_db().rollback()
+            print("Error:", e)
+        finally:
+            UserDBConnect.get_db().close()
+
     # 회원 탈퇴
     def delete_user(self, userno):
         try:

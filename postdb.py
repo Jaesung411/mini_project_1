@@ -23,7 +23,7 @@ class ReviewDAO:
         ret = []
         cursor = DBConnect.get_db().cursor()
 
-        sql_select = 'SELECT REVIEW_ID, CONTENTS, RATE, IMAGE FROM REVIEW WHERE store_id = %s ORDER BY REVIEW_ID DESC'
+        sql_select = 'SELECT REVIEW_ID, CONTENTS, RATE, IMAGE,USER_ID FROM REVIEW WHERE store_id = %s ORDER BY REVIEW_ID DESC'
         cursor.execute(sql_select, (store_id,))
 
         rows = cursor.fetchall()
@@ -32,7 +32,8 @@ class ReviewDAO:
                 'review_id': row[0],
                 'contents': row[1],
                 'rate': row[2],
-                'image': row[3]
+                'image': row[3],
+                'user_id':row[4]
             })
         return ret
     

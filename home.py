@@ -31,9 +31,7 @@ def welcome():
 
 @app.route('/home')
 def home():
-    # print(session['userInfo'])
-    # list = StoreDAO().get_stores()
-    # print(request.args)
+
     # 페이지 번호와 페이지당 항목 수 설정
     page = int(request.args.get('page', 1))
     per_page = 8  # 페이지당 가게 수
