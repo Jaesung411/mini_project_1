@@ -1,4 +1,5 @@
 import pymysql
+from DB.storedb import *
 
 class DBConnect:
     def __init__(self) -> None:
@@ -62,7 +63,7 @@ class ReviewDAO:
         ret = []
         cursor = DBConnect.get_db().cursor()
 
-        sql_select = 'SELECT AVG(RATE) FROM REVIEW WHERE STORE_ID = %s ORDER BY REVIEW_ID DESC'
+        sql_select = 'SELECT ROUND(AVG(RATE),1) FROM REVIEW WHERE STORE_ID = %s ORDER BY REVIEW_ID DESC'
         cursor.execute(sql_select, (store_id,))
 
         rate = cursor.fetchone()
@@ -77,6 +78,11 @@ class ReviewDAO:
         sql_insert = 'INSERT INTO REVIEW (USER_ID, STORE_ID, CONTENTS, RATE, IMAGE) VALUES (%s, %s, %s, %s, %s)'
         ret_cnt = cursor.execute(sql_insert, (user_id, store_id, contents, rate, image))
         DBConnect.get_db().commit()
+
+        store = StoreDAO.get_store_by_id(store_id)
+        StoreDAO.update_store_rate(store['store_id'], ReviewDAO.get_rate(store_id))
+        # todo: update sotre pk issue
+
         ret = ReviewDAO.get_reviews(store_id)
         return ret
         
