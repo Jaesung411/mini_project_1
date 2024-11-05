@@ -1,4 +1,5 @@
 import pymysql
+from DB.storedb import *
 
 class DBConnect:
     def __init__(self) -> None:
@@ -77,6 +78,11 @@ class ReviewDAO:
         sql_insert = 'INSERT INTO REVIEW (USER_ID, STORE_ID, CONTENTS, RATE, IMAGE) VALUES (%s, %s, %s, %s, %s)'
         ret_cnt = cursor.execute(sql_insert, (user_id, store_id, contents, rate, image))
         DBConnect.get_db().commit()
+
+        store = StoreDAO.get_store_by_id(store_id)
+        StoreDAO.update_store(store['store_id'], store['name'], store['address'], store['image'], ReviewDAO.get_rate(store_id), store['food_type'])
+        # todo: update sotre pk issue
+
         ret = ReviewDAO.get_reviews(store_id)
         return ret
         

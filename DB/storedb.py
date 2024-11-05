@@ -58,7 +58,8 @@ class StoreDAO:
         return None
     
     # 가게 ID 불러오기
-    def get_store_by_id(self, store_id):
+    @staticmethod
+    def get_store_by_id(store_id):
         cursor = DBConnect.get_db().cursor()
         sql_select = 'SELECT * FROM store WHERE store_id = %s'
         cursor.execute(sql_select, (store_id,))
@@ -84,7 +85,8 @@ class StoreDAO:
         return f'insert OK : {ret_cnt}'
     
     # update
-    def update_store(self, store_id, name, address, image, rate, food_type):
+    @staticmethod
+    def update_store(store_id, name, address, image, rate, food_type):
         cursor = DBConnect.get_db().cursor()
         sql_update = 'update store set store_id=%s, name=%s, address=%s, image=%s, rate=%s, food_type=%s'
         ret_cnt = cursor.execute(sql_update, (store_id, name, address, image, rate, food_type))
