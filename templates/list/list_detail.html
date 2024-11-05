@@ -29,6 +29,8 @@
         </div>
         <div class="store-info">
             <h2>주소 : {{ store['address'] }}</h2>
+            <h1>{{ store['name'] }} 위치 보기</h1>
+            <a href="/map/{{ store['store_id'] }}" class="btn btn-primary mt-2">매장 위치 보기</a>
             <h2>< 대표 메뉴 ></h2>
             <div>
                 {% for menu in menus %}
@@ -36,12 +38,15 @@
                 {% endfor %}
             </div>
             <p>평점 : {{ store['rate'] }}</p>
-            <a href="/map/{{ store['store_id'] }}" class="btn btn-primary mt-3">매장 위치 보기</a>
+            <!-- <a href="/map/{{ store['store_id'] }}" class="btn btn-primary mt-3">매장 위치 보기</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewModal">
+                새 리뷰 작성하기
+            </button> -->
         </div>
     </div>
 
     {% include 'list/review.html' %}
-   
+
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');

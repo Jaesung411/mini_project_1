@@ -24,12 +24,14 @@ def list():
 def store_detail(store_name):
     # store_name을 사용하여 해당 가게의 정보를 가져오는 로직 추가
     store = StoreDAO().get_store_by_name(store_name)
+    print(store)
     # 가게 ID를 사용하여 이미지 가져오기
     images = ImageDAO().get_images_by_store_id(store['store_id'])
     # 해당 store_id의 메뉴 가져오기
     menus = MenuDAO().get_menus_by_store_id(store['store_id'])
-    review = ReviewDAO().get_reviews(store['store_id'])
-    return render_template('list/list_detail.html', store=store, images=images, menus=menus, reviews=review)
+    # 해당 store_id의 리뷰 가져오기
+    reviews = ReviewDAO().get_reviews(store['store_id'])
+    return render_template('list/list_detail.html', store=store, images=images, menus=menus, reviews=reviews)
 
 
 # if __name__ == '__main__':

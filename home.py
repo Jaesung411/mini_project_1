@@ -74,7 +74,8 @@ def store_detail(store_name):
         menus=menus, 
         reviews=reviews, 
         paginated_reviews=paginated_reviews, 
-        page=page, total_pages=total_pages
+        page=page, 
+        total_pages=total_pages
     )
 
 @app.route('/search')

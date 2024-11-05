@@ -1,72 +1,8 @@
-<!-- <div>
-    <div>
-        <h2>새 리뷰 작성하기</h2>
-        <form action='/new_review/{{store['store_id']}}' method="POST">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">리뷰</label>
-                <input type="text" name="contents" class="form-control" id="contents" placeholder="가게에 대해서 평가해주세요!">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">평점</label>
-                <input type="range" name="rate" min="0" max="5" step="0.5" class="form-control" id="rate">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">이미지</label>
-                <input type="file" name="image" class="form-control" id="image">
-            </div>
-            <input type="submit" value="등록하기"/>
-        </form>
-    </div>
-    <table class="table">
-        <thead>
-            <th scope="col">리뷰</th>
-            <th scope="col">평점</th>
-            <th scope="col">이미지</th>
-            <th scope="col">수정/삭제</th>
-        </thead>
-        {% for review in reviews %}
-        <tr>
-            <td>{{review['contents']}}</td>
-            <td>{{review['rate']}}</td>
-            <td>{{review['image']}}</td>
-            <td>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title fs-5" id="exampleModalLabel">리뷰 수정하기</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form action='/update/{{store['store_id']}}/{{review['review_id']}}' method="POST">
-                            <div class="modal-body">
-                                    리뷰 <input type="text" name="contents"/><br>
-                                    평점 <input type="range" name="rate" min="0" max="5" step="0.5"/><br>
-                                    이미지 <input type="file" name="image"/><br>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">창 닫기</button>
-                                <button type="submit" class="btn btn-primary">수정하기</button>
-                            </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                <form action='/delete/{{store['store_id']}}/{{review['review_id']}}' method="POST">
-                    <button type="submit" class="btn btn-primary">삭제</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</div> -->
-
 <!-- 리뷰 작성 버튼 및 모달 -->
 <div class="my-5">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewModal">
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addReviewModal">
         새 리뷰 작성하기
     </button>
-
     <!-- 리뷰 등록 모달 -->
     <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -116,7 +52,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editReviewModal{{ review['review_id'] }}">수정</button>
-                        <form action="/delete/{{ store['store_id'] }}/{{ review['review_id'] }}" method="POST" class="d-inline">
+                        <form action="/delete/{{ store['store_id'] }}/{{ review['review_id'] }}/{{ page }}" method="POST" class="d-inline">
                             <button type="submit" class="btn btn-danger btn-sm">삭제</button>
                         </form>
                     </div>

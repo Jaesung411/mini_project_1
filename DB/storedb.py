@@ -63,6 +63,7 @@ class StoreDAO:
         sql_select = 'SELECT * FROM store WHERE store_id = %s'
         cursor.execute(sql_select, (store_id,))
         row = cursor.fetchone()
+        DBConnect.get_db().close()
         if row:
             return {
                 'store_id': row[0],
