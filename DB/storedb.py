@@ -77,10 +77,14 @@ class StoreDAO:
         return None  # 가게가 없으면 None 반환
     
     # insert
-    def insert_store(self, store_id, name, address, image, rate, food_type):
+    def insert_store(self, name, address, image, rate, food_type):
         cursor = DBConnect.get_db().cursor()
-        sql_insert = 'insert into store (store_id, name, address, image, rate, food_type) values (%s, %s, %s, %s, %s, %s)'
-        ret_cnt = cursor.execute(sql_insert, (store_id, name, address, image, rate, food_type))
+
+        # 이미지 경로가 지정되지 않으면 기본 경로 설정
+        image = image or 'static/images/'
+
+        sql_insert = 'insert into store ( name, address, image, rate, food_type) values ( %s, %s, %s, %s, %s)'
+        ret_cnt = cursor.execute(sql_insert, ( name, address, image, rate, food_type))
         DBConnect.get_db().close()
         return f'insert OK : {ret_cnt}'
     

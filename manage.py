@@ -46,7 +46,7 @@ def delete_member(userId):
 @manage_bp.route('/manage/add', methods=['POST'])
 def add_store():
     # 클라이언트에서 넘어온 데이터 받기
-    store_id = request.form.get('store_id')
+    # store_id = request.form.get('store_id')
     name = request.form.get('name')
     address = request.form.get('address')
     rate = request.form.get('rate')
@@ -54,10 +54,6 @@ def add_store():
 
     # 이미지 파일 처리
     image = request.files.get('image')  # 파일은 request.files로 가져옵니다.
-
-    # 디버깅용 로그 추가
-    print(f"Received data: store_id={store_id}, name={name}, address={address}, rate={rate}, food_type={food_type}")
-    
 
     # 이미지 파일이 선택되었을 경우 처리
     if image:
@@ -71,25 +67,21 @@ def add_store():
     else:
         image_path = None  # 이미지가 없으면 None
         
-        
-    #app.config['UPLOAD_FOLDER'] = 'static/images'
-    path = f'static/images/{store_id}/{image.filename}'  # 저장할 경로 설정
-
-    # StoreDAO 객체 생성
-    store_dao = StoreDAO()
-
-    # 가게 추가 전에 store_id가 이미 존재하는지 확인
-    existing_store = store_dao.get_store_by_id(store_id)
-    if existing_store:
-        print(f"Error: store_id {store_id} already exists")
-        # 클라이언트에게 실패 메시지와 함께 JSON 응답을 보냄
-        return jsonify({"success": False, "message": "이 ID를 가진 가게가 이미 존재합니다."})
 
     try:
+        # StoreDAO 객체 생성
+        store_dao = StoreDAO()
+        #app.config['UPLOAD_FOLDER'] = 'static/images'
+
         # store_dao.insert_store에 image_path 전달
-        store_dao.insert_store(store_id, name, address, path, rate, food_type)
+        store_dao.insert_store(name, address, "", rate, food_type)
+
+        store_id = store_dao.get_store_by_name(name)['store_id']
+        path = f'static/images/{store_id}/{image.filename}'  # 저장할 경로 설정
+    
         # 가게 추가 후 성공 메시지와 함께 JSON 응답을 보냄
         return jsonify({"success": True, "message": "가게가 성공적으로 추가되었습니다."})
+    
     except Exception as e:
         print(f"Error while adding store: {e}")
         # 가게 추가 실패 시 실패 메시지와 함께 JSON 응답을 보냄
@@ -99,7 +91,6 @@ def add_store():
 @manage_bp.route('/manage/edit/<int:store_id>', methods=['GET','POST'])
 def edit_store(store_id):
     try:
-        print("********************************")
         data = request.get_json()
         name = data.get('name')
         address = data.get('address')
@@ -141,7 +132,7 @@ def delete_store(store_id):
 def edit_data(store_id):
     store_dao = StoreDAO()
     store = store_dao.get_store_by_id(store_id)
-    print(store)
+   
     if store:
         # store 객체에서 데이터를 추출하여 딕셔너리 형태로 반환
         return jsonify({
