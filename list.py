@@ -110,7 +110,8 @@ def manage_images(store_name):
                 if not os.path.exists(image_folder):
                     os.makedirs(image_folder)
 
-                path = f'/{app.config['UPLOAD_FOLDER']}/{store_id}/{image_file.filename}'  # 저장할 경로 설정
+                upload_folder = app.config['UPLOAD_FOLDER']
+                path = f"/{upload_folder}/{store_id}/{image_file.filename}" 
                 image_file.save(os.path.join(image_folder, image_file.filename))  # 이미지 저장
                 image_dao.insert_image(store_id, path)  # 수정된 메서드 호출
                 flash('이미지가 추가되었습니다.')
