@@ -23,6 +23,8 @@ import logging.config
 app = Flask(__name__)
 app.secret_key='1234'
 
+app.config['UPLOAD_FOLDER'] = 'static/images'
+
 socketio.init_app(app)  # app에 socketio 초기화
 
 app.register_blueprint(chat_bp)

@@ -11,6 +11,8 @@ from werkzeug.utils import *
 app = Flask(__name__)
 app.secret_key='1234'
 
+app.config['UPLOAD_FOLDER'] = 'static/images'
+
 list_bp = Blueprint('list', __name__)
 
 # @list_bp.route('/list')
@@ -93,7 +95,7 @@ def manage_images(store_name):
         return redirect('/home')
     
     store_id = store['store_id']
-    app.config['UPLOAD_FOLDER'] = 'static/images'
+
     if request.method == 'POST':
         action = request.form.get('action')  # action 변수를 여기서 초기화
         
@@ -101,27 +103,43 @@ def manage_images(store_name):
             if 'image' in request.files:
                 image_file = request.files['image']
                 image_id = image_dao.get_max_image_id() + 1  # ID는 DB에서 최대값을 가져와서 생성
-                path = f'{store_id}/{image_file.filename}'  # 저장할 경로 설정
-                image_file.save(os.path.join(app.config['UPLOAD_FOLDER'], path))  # 이미지 저장
+                # 이미지가 저장될 폴더 경로
+                image_folder = os.path.join(app.config['UPLOAD_FOLDER'], str(store_id))
+
+                # 폴더가 존재하지 않으면 생성
+                if not os.path.exists(image_folder):
+                    os.makedirs(image_folder)
+
+                path = f'/{app.config['UPLOAD_FOLDER']}/{store_id}/{image_file.filename}'  # 저장할 경로 설정
+                image_file.save(os.path.join(image_folder, image_file.filename))  # 이미지 저장
                 image_dao.insert_image(store_id, path)  # 수정된 메서드 호출
                 flash('이미지가 추가되었습니다.')
         
         elif action == '삭제':
-            remove_image_id = request.form.get('image_id')
-            remove_image_path = request.form.get('image_path')
-            print(remove_image_id, remove_image_path)
-            
-            # 삭제할 이미지 경로 설정
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(remove_image_path))
-            
-            # 파일 존재 여부 확인 후 삭제
-            if os.path.exists(file_path):
-                os.remove(file_path)  # 파일 삭제
-                image_dao.delete_image(remove_image_id)
-                flash('이미지가 삭제되었습니다.')
-            else:
-                flash('이미지를 찾을 수 없습니다.')
+            image_id = request.form.get('image_id')
+            image_dao.delete_image(image_id)
+            flash('이미지가 삭제되었습니다.')
+        
+        elif action == '수정':
+            image_id = request.form.get('image_id')
+            if 'image' in request.files:
+                image_file = request.files['image']
+                image_folder = os.path.join(app.config['UPLOAD_FOLDER'], str(store_id))
 
-        images = image_dao.get_images_by_store_id(store_id)
-        menus = MenuDAO().get_menus_by_store_id(store_id)
-        return render_template('list/store_detail.html', menus=menus, store=store, images=images)
+                # 폴더가 존재하지 않으면 생성
+                if not os.path.exists(image_folder):
+                    os.makedirs(image_folder)
+
+                file_path = os.path.join(image_folder, f'{image_id}.png')  # 예: 1.png, 2.png 등
+                image_file.save(file_path)
+                path = f'{store_id}/{image_id}.png'
+                image_dao.update_image(image_id, store_id, path)
+                flash('이미지가 수정되었습니다.')
+    
+    # 이미지 경로 처리
+    images = image_dao.get_images_by_store_id(store_id)
+    # 이미지를 images/<store_id>/<image_name> 형식으로 처리
+    for image in images:
+        image['path'] = f'images/{store_id}/{image["path"].split("/")[1]}'
+    
+    return render_template('list/store_detail.html', store=store, images=images)

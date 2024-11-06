@@ -12,7 +12,7 @@
             {% for image in images %}
             <tr>
                 <td>
-                    <img src="{{ url_for('static', filename=image['path']) }}" alt="이미지" style="width: 200px; height: auto;">
+                    <img src="{{ image.path }}" alt="이미지" style="width: 200px; height: auto;">
                 </td>
                 <td>
                     <form action="{{ url_for('list.manage_images', store_name=store['name'])}}" method="POST" style="display:inline;" onsubmit="return confirmAction('삭제', this)">

@@ -57,6 +57,7 @@ def add_store():
 
     # 디버깅용 로그 추가
     print(f"Received data: store_id={store_id}, name={name}, address={address}, rate={rate}, food_type={food_type}")
+    
 
     # 이미지 파일이 선택되었을 경우 처리
     if image:
@@ -69,6 +70,10 @@ def add_store():
         print(f"Image saved to {image_path}")  # 디버깅용
     else:
         image_path = None  # 이미지가 없으면 None
+        
+        
+    #app.config['UPLOAD_FOLDER'] = 'static/images'
+    path = f'static/images/{store_id}/{image.filename}'  # 저장할 경로 설정
 
     # StoreDAO 객체 생성
     store_dao = StoreDAO()
@@ -82,7 +87,7 @@ def add_store():
 
     try:
         # store_dao.insert_store에 image_path 전달
-        store_dao.insert_store(store_id, name, address, image_path, rate, food_type)
+        store_dao.insert_store(store_id, name, address, path, rate, food_type)
         # 가게 추가 후 성공 메시지와 함께 JSON 응답을 보냄
         return jsonify({"success": True, "message": "가게가 성공적으로 추가되었습니다."})
     except Exception as e:
