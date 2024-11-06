@@ -22,7 +22,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>메뉴 ID</th>
                         <th>메뉴 이름</th>
                         <th>가격</th>
                         <th>삭제/수정</th>
@@ -31,7 +30,6 @@
                 <tbody>
                     {% for menu in menus %}
                     <tr>
-                        <td>{{ menu['menu_id'] }}</td>
                         <td>{{ menu['menu_name'] }}</td>
                         <td>{{ menu['price'] }}</td>
                         <td>

@@ -4,7 +4,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>이미지 ID</th>
                 <th>이미지 경로</th>
                 <th>삭제</th>
             </tr>
@@ -12,37 +11,27 @@
         <tbody>
             {% for image in images %}
             <tr>
-                <td>{{ image['image_id'] }}</td>
-                <td>{{ image['path'] }}</td>
+                <td>
+                    <img src="{{ url_for('static', filename=image['path']) }}" alt="이미지" style="width: 200px; height: auto;">
+                </td>
                 <td>
                     <form action="{{ url_for('list.manage_images', store_name=store['name'])}}" method="POST" style="display:inline;" onsubmit="return confirmAction('삭제', this)">
                         <input type="hidden" name="image_id" value="{{ image['image_id'] }}">
                         <input type="hidden" name="image_path" value="{{ image['path'] }}">
                         <input type="hidden" name="action" value="삭제">
                         <input type="submit" value="삭제">
-                    </form>
                 </td>
+                    </form>
             </tr>
             {% endfor %}
-        </tbody>
-    </table>
-
+        </table>
+    </section>
     <!-- 이미지 추가 폼 -->
-    <h4>이미지 추가</h4>
     <form action="{{ url_for('list.manage_images', store_name=store['name']) }}" method="POST" enctype="multipart/form-data" onsubmit="return confirmAction('추가', this)">
+        <h4>이미지 추가</h4>
         <input type="hidden" name="store_id" value="{{ store['store_id'] }}">
         <input type="file" name="image" required>
         <input type="submit" name="action" value="추가">
     </form>
-
-    <!-- 이미지 수정 폼 -->
-    <form id="edit-image-form" action="{{ url_for('list.manage_images', store_name=store['name']) }}" method="POST" style="display:none;" enctype="multipart/form-data" onsubmit="return confirmAction('수정', this)" enctype="multipart/form-data">
-        <input type="hidden" name="image_id" id="edit-image-id">
-        <input type="hidden" name="image_path" id="edit-image-path">
-        <input type="file" name="image_name" id="edit-image-file" required>
-        <input type="hidden" name="action" value="수정">
-        <input type="submit" value="수정">
-        <button type="button" onclick="cancelEdit()">취소</button>
-    </form>
-</section>
 </div>
+</tbody>

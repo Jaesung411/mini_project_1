@@ -52,27 +52,6 @@
 
         {% include 'login/change_pwd.html' %}
 
-        <!-- 리뷰 내역 섹션 -->
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5 class="mb-0">리뷰 내역</h5>
-            </div>
-            <div class="card-body">
-                {% if reviews %}
-                    <ul class="list-group">
-                        {% for review in reviews %}
-                            <li class="list-group-item">
-                                <strong>{{ review.store_name }}</strong>: {{ review.content }} 
-                                <small class="text-muted"> (작성일: {{ review.date }})</small>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>작성한 리뷰가 없습니다.</p>
-                {% endif %}
-            </div>
-        </div>
-
         <!-- 회원 탈퇴 섹션 -->
         <div class="card mb-4">
             <div class="card-header">

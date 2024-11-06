@@ -1,5 +1,6 @@
 from flask import *
 from DB.userdb import *
+from DB.postdb import *
 from werkzeug.security import check_password_hash, generate_password_hash
 mypage_bp = Blueprint('mypage', __name__)
 
@@ -39,7 +40,6 @@ def update_pwd():
         else:
             new_hashed_password = generate_password_hash(new_pwd)
             userDAO().update_pwd(session['userInfo']['userId'],new_hashed_password)
-
 
     # return redirect(url_for("welcome"))
     return redirect(url_for("manage.mypage"))
