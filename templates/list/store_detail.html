@@ -68,7 +68,7 @@
         </section>
         <br>
         {% include 'list/store_image.html' %}
-        
+
     </div>
 
     <script>
@@ -78,11 +78,7 @@
             document.getElementById('edit-menu-price').value = price;
             document.getElementById('edit-menu-form').style.display = 'block';
         }
-    
-        function editImage(image_id) {
-            document.getElementById('edit-image-id').value = image_id;
-            document.getElementById('edit-image-form').style.display = 'block';
-        }
+
     
         function cancelEdit() {
             document.getElementById('edit-menu-form').style.display = 'none';

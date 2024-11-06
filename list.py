@@ -107,22 +107,21 @@ def manage_images(store_name):
                 flash('이미지가 추가되었습니다.')
         
         elif action == '삭제':
-            image_id = request.form.get('image_id')
-            image_dao.delete_image(image_id)
-            flash('이미지가 삭제되었습니다.')
-        
-        elif action == '수정':
-            image_id = request.form.get('image_id')
-            if 'image' in request.files:
-                image_file = request.files['image']
-                image_folder = os.path.join(app.config['UPLOAD_FOLDER'], str(store_id))
-                if not os.path.exists(image_folder):
-                    os.makedirs(image_folder)
-                file_path = os.path.join(image_folder, f'{image_id}.png')  # 예: 1.png, 2.png 등
-                image_file.save(file_path)
-                path = f'{store_id}/{image_id}.png'
-                image_dao.update_image(image_id, store_id, path)
-                flash('이미지가 수정되었습니다.')
-    
-    images = image_dao.get_images_by_store_id(store_id)
-    return render_template('list/store_detail.html', store=store, images=images)
+            remove_image_id = request.form.get('image_id')
+            remove_image_path = request.form.get('image_path')
+            print(remove_image_id, remove_image_path)
+            
+            # 삭제할 이미지 경로 설정
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(remove_image_path))
+            
+            # 파일 존재 여부 확인 후 삭제
+            if os.path.exists(file_path):
+                os.remove(file_path)  # 파일 삭제
+                image_dao.delete_image(remove_image_id)
+                flash('이미지가 삭제되었습니다.')
+            else:
+                flash('이미지를 찾을 수 없습니다.')
+
+        images = image_dao.get_images_by_store_id(store_id)
+        menus = MenuDAO().get_menus_by_store_id(store_id)
+        return render_template('list/store_detail.html', menus=menus, store=store, images=images)

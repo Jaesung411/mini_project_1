@@ -6,7 +6,7 @@
             <tr>
                 <th>이미지 ID</th>
                 <th>이미지 경로</th>
-                <th>삭제/수정</th>
+                <th>삭제</th>
             </tr>
         </thead>
         <tbody>
@@ -15,12 +15,12 @@
                 <td>{{ image['image_id'] }}</td>
                 <td>{{ image['path'] }}</td>
                 <td>
-                    <form action="{{ url_for('list.manage_images', store_name=store['name']) }}" method="POST" style="display:inline;" onsubmit="return confirmAction('삭제', this)">
+                    <form action="{{ url_for('list.manage_images', store_name=store['name'])}}" method="POST" style="display:inline;" onsubmit="return confirmAction('삭제', this)">
                         <input type="hidden" name="image_id" value="{{ image['image_id'] }}">
+                        <input type="hidden" name="image_path" value="{{ image['path'] }}">
                         <input type="hidden" name="action" value="삭제">
                         <input type="submit" value="삭제">
                     </form>
-                    <button onclick="editImage('{{ image.image_id }}')">수정</button>
                 </td>
             </tr>
             {% endfor %}
@@ -36,9 +36,10 @@
     </form>
 
     <!-- 이미지 수정 폼 -->
-    <form id="edit-image-form" action="{{ url_for('list.manage_images', store_name=store['name']) }}" method="POST" style="display:none;" onsubmit="return confirmAction('수정', this)" enctype="multipart/form-data">
+    <form id="edit-image-form" action="{{ url_for('list.manage_images', store_name=store['name']) }}" method="POST" style="display:none;" enctype="multipart/form-data" onsubmit="return confirmAction('수정', this)" enctype="multipart/form-data">
         <input type="hidden" name="image_id" id="edit-image-id">
-        <input type="file" name="image" id="edit-image-file" required>
+        <input type="hidden" name="image_path" id="edit-image-path">
+        <input type="file" name="image_name" id="edit-image-file" required>
         <input type="hidden" name="action" value="수정">
         <input type="submit" value="수정">
         <button type="button" onclick="cancelEdit()">취소</button>
