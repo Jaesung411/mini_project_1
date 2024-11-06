@@ -18,7 +18,7 @@
         <div class="slides">
             {% for image in images %}
             <div class="slide image_item">
-                <img src="{{ url_for('static', filename=image) }}" alt="Image for {{ store['name'] }}">
+                <img src="{{ image.path }}" alt="Image for {{ store['name'] }}">
             </div>
             {% endfor %}
         </div>

@@ -1,5 +1,0 @@
-user_admin.login_bp | 2024-11-06 14:33:51,804 | INFO | 81518 | 111111111111
-user_admin.login_bp | 2024-11-06 14:33:53,018 | INFO | 81524 | 111111111111
-user_admin.login_bp | 2024-11-06 14:34:01,633 | INFO | 81524 | 로그인 필요
-user_admin.login_bp | 2024-11-06 14:34:01,807 | INFO | 81524 | 로그인 성공 홈으로
-user_admin.login_bp | 2024-11-06 14:34:01,807 | INFO | 81524 | user_id : {user_info[0]}
