@@ -53,7 +53,7 @@ def home():
     start = (page - 1) * per_page
     end = start + per_page
     paginated_stores = all_stores[start:end]
-    
+    print(paginated_stores)
     # 전체 페이지 수 계산
     total_pages = (len(all_stores) + per_page - 1) // per_page
     

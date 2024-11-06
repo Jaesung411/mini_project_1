@@ -52,20 +52,20 @@ def add_store():
     rate = request.form.get('rate')
     food_type = request.form.get('food_type')
 
-    # 이미지 파일 처리
-    image = request.files.get('image')  # 파일은 request.files로 가져옵니다.
+    # # 이미지 파일 처리
+    # image = request.files.get('image')  # 파일은 request.files로 가져옵니다.
 
-    # 이미지 파일이 선택되었을 경우 처리
-    if image:
-        # 파일명 안전하게 처리
-        filename = '1.png'  # 이미지는 항상 '1.png'로 저장
-        store_folder = os.path.join(current_app.root_path, 'static', 'images', store_id)  # static/images/<store_id> 경로
-        os.makedirs(store_folder, exist_ok=True)  # 폴더가 없으면 생성
-        image_path = os.path.join(store_folder, filename)  # 저장될 경로 설정
-        image.save(image_path)  # 이미지 파일을 지정된 경로에 저장
-        print(f"Image saved to {image_path}")  # 디버깅용
-    else:
-        image_path = None  # 이미지가 없으면 None
+    # # 이미지 파일이 선택되었을 경우 처리
+    # if image:
+    #     # 파일명 안전하게 처리
+    #     filename = '1.png'  # 이미지는 항상 '1.png'로 저장
+    #     store_folder = os.path.join(current_app.root_path, 'static', 'images', store_id)  # static/images/<store_id> 경로
+    #     os.makedirs(store_folder, exist_ok=True)  # 폴더가 없으면 생성
+    #     image_path = os.path.join(store_folder, filename)  # 저장될 경로 설정
+    #     image.save(image_path)  # 이미지 파일을 지정된 경로에 저장
+    #     print(f"Image saved to {image_path}")  # 디버깅용
+    # else:
+    #     image_path = None  # 이미지가 없으면 None
         
 
     try:
@@ -77,8 +77,24 @@ def add_store():
         store_dao.insert_store(name, address, "", rate, food_type)
 
         store_id = store_dao.get_store_by_name(name)['store_id']
+
+        # 이미지 파일 처리
+        image = request.files.get('image')  # 파일은 request.files로 가져옵니다.
+       
+        # 이미지 파일이 선택되었을 경우 처리
+        if image:
+            # 파일명 안전하게 처리
+            filename = '1.png'  # 이미지는 항상 '1.png'로 저장
+            store_folder = os.path.join(current_app.root_path, 'static', 'images', str(store_id))  # static/images/<store_id> 경로
+            os.makedirs(store_folder, exist_ok=True)  # 폴더가 없으면 생성
+            image_path = os.path.join(store_folder, filename)  # 저장될 경로 설정
+            image.save(image_path)  # 이미지 파일을 지정된 경로에 저장
+            print(f"Image saved to {image_path}")  # 디버깅용
+        else:
+            image_path = None  # 이미지가 없으면 None
+        print(store_id,image.filename)
         path = f'static/images/{store_id}/{image.filename}'  # 저장할 경로 설정
-    
+        store_dao.update_store(store_id, name, address, path, rate, food_type)
         # 가게 추가 후 성공 메시지와 함께 JSON 응답을 보냄
         return jsonify({"success": True, "message": "가게가 성공적으로 추가되었습니다."})
     

@@ -92,8 +92,8 @@ class StoreDAO:
     @staticmethod
     def update_store(store_id, name, address, image, rate, food_type):
         cursor = DBConnect.get_db().cursor()
-        sql_update = 'update store set store_id=%s, name=%s, address=%s, image=%s, rate=%s, food_type=%s'
-        ret_cnt = cursor.execute(sql_update, (store_id, name, address, image, rate, food_type))
+        sql_update = 'update store set name=%s, address=%s, image=%s, rate=%s, food_type=%s where store_id=%s'
+        ret_cnt = cursor.execute(sql_update, (name, address, image, rate, food_type, store_id))
         DBConnect.get_db().close()
         return f'update OK : {ret_cnt}'
     
