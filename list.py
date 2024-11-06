@@ -51,36 +51,43 @@ def store_detail(store_name):
         total_pages=total_pages
     )
 
-# 메뉴 수정 페이지
 @list_bp.route('/<store_name>/detail', methods=['GET', 'POST'])
 def manage_menu(store_name):
     menu_dao = MenuDAO()
     store = StoreDAO().get_store_by_name(store_name)
+
     # store가 None인 경우 처리
     if store is None:
         flash(f"{store_name}에 해당하는 가게를 찾을 수 없습니다.")
         return redirect('/home')
+    
     store_id = store['store_id']
+        
     if request.method == 'POST':
-        action = request.form.get('action')
-        if action == '추가':
-            menu_name = request.form.get('menu_name')
-            price = request.form.get('price')
-            max_menu_id = menu_dao.get_max_menu_id() + 1
-            menu_dao.insert_menu(max_menu_id, store_id, menu_name, price)
-            flash('메뉴가 추가되었습니다.')
-        elif action == '삭제':
-            menu_id = request.form.get('menu_id')
-            menu_dao.delete_menu(menu_id)
-            flash('메뉴가 삭제되었습니다.')
-        else:
-            menu_id = request.form.get('menu_id')
-            menu_name = request.form.get('menu_name')
-            menu_price = request.form.get('price')
-            
-            menu_dao.update_menu(menu_id,store_id,menu_name,menu_price)
+            action = request.form.get('action')
+            if action == '추가':
+                menu_name = request.form.get('menu_name')
+                price = request.form.get('price')
+                max_menu_id = menu_dao.get_max_menu_id() + 1
+                menu_dao.insert_menu(max_menu_id, store_id, menu_name, price)
+                flash('메뉴가 추가되었습니다.')
+            elif action == '삭제':
+                menu_id = request.form.get('menu_id')
+                menu_dao.delete_menu(menu_id)
+                flash('메뉴가 삭제되었습니다.')
+            elif action == '수정':
+                menu_id = request.form.get('menu_id')
+                menu_name = request.form.get('menu_name')
+                menu_price = request.form.get('price')
+                menu_dao.update_menu(menu_id, store_id, menu_name, menu_price)
+                flash('메뉴가 수정되었습니다.')
+
+            # 변경 후 최신 데이터 반영을 위해 리다이렉트
+            return redirect(url_for('list.manage_menu', store_name=store_name))
+    # GET 요청 시 데이터 가져오기
     images = ImageDAO().get_images_by_store_id(store_id)
     menus = MenuDAO().get_menus_by_store_id(store_id)
+
     return render_template('list/store_detail.html', store=store, images=images, menus=menus)
 
 # 이미지 수정 페이지
