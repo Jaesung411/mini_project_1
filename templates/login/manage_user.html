@@ -14,15 +14,17 @@
                 </thead>
                 <tbody>
                     {%for user in users%}
-                    <tr>
-                        <td>{{user[1]}}</td>
-                        <td>{{user[3]}}</td>
-                        <td>{{user[4]}}</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" onclick="editMember('{{ user[0] }}', '{{ user[1] }}', '{{ user[3] }}', '{{ user[4] }}')">수정</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteMember('{{user[0]}}','{{user[3]}}')">삭제</button>
-                        </td>
-                    </tr>
+                        {%if user[0] != 0 %}
+                        <tr>
+                            <td>{{user[1]}}</td>
+                            <td>{{user[3]}}</td>
+                            <td>{{user[4]}}</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" onclick="editMember('{{ user[0] }}', '{{ user[1] }}', '{{ user[3] }}', '{{ user[4] }}')">수정</button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteMember('{{user[0]}}','{{user[3]}}')">삭제</button>
+                            </td>
+                        </tr>
+                        {%endif%}
                     {%endfor%}
                 </tbody>
             </table>

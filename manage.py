@@ -2,6 +2,7 @@ from flask import *
 from DB.storedb import *
 import DB.userdb as userdb
 from werkzeug.utils import *
+import shutil
 
 manage_bp = Blueprint('manage', __name__)
 
@@ -52,26 +53,9 @@ def add_store():
     rate = request.form.get('rate')
     food_type = request.form.get('food_type')
 
-    # # 이미지 파일 처리
-    # image = request.files.get('image')  # 파일은 request.files로 가져옵니다.
-
-    # # 이미지 파일이 선택되었을 경우 처리
-    # if image:
-    #     # 파일명 안전하게 처리
-    #     filename = '1.png'  # 이미지는 항상 '1.png'로 저장
-    #     store_folder = os.path.join(current_app.root_path, 'static', 'images', store_id)  # static/images/<store_id> 경로
-    #     os.makedirs(store_folder, exist_ok=True)  # 폴더가 없으면 생성
-    #     image_path = os.path.join(store_folder, filename)  # 저장될 경로 설정
-    #     image.save(image_path)  # 이미지 파일을 지정된 경로에 저장
-    #     print(f"Image saved to {image_path}")  # 디버깅용
-    # else:
-    #     image_path = None  # 이미지가 없으면 None
-        
-
     try:
         # StoreDAO 객체 생성
         store_dao = StoreDAO()
-        #app.config['UPLOAD_FOLDER'] = 'static/images'
 
         # store_dao.insert_store에 image_path 전달
         store_dao.insert_store(name, address, "", rate, food_type)
@@ -140,6 +124,11 @@ def delete_store(store_id):
     store_dao = StoreDAO()
     try:
         store_dao.delete_store(store_id)
+
+        # 관련 디렉터리 삭제
+        directory_path = os.path.join('static', 'images', str(store_id))
+        if os.path.exists(directory_path):
+            shutil.rmtree(directory_path)
         return jsonify({'success': True, 'message': '가게가 삭제되었습니다.'}), 200
     except Exception as e:
         return jsonify({'success': False, 'message': '삭제 실패: ' + str(e)}), 500

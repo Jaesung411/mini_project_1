@@ -12,6 +12,16 @@
 <body>
     {% include 'navigator.html' %}
 
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                    <script>		
+                        alert('{{message}}')
+                    </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <div class="container">
         <!-- 상점 정보 -->
         <h2>{{ store['name'] }}</h2>

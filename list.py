@@ -15,16 +15,6 @@ app.config['UPLOAD_FOLDER'] = 'static/images'
 
 list_bp = Blueprint('list', __name__)
 
-# @list_bp.route('/list')
-# def list():
-    # return render_template('list/list.html')
-
-# # 홈 페이지
-# @list_bp.route('/')
-# def list():
-#     list = StoreDAO().get_stores()
-#     return render_template('list/list.html', list=list)
-
 # 가게 상세 페이지
 @list_bp.route('/<store_name>')
 def store_detail(store_name):
@@ -58,7 +48,7 @@ def manage_menu(store_name):
 
     # store가 None인 경우 처리
     if store is None:
-        flash(f"{store_name}에 해당하는 가게를 찾을 수 없습니다.")
+        # flash(f"{store_name}에 해당하는 가게를 찾을 수 없습니다.")
         return redirect('/home')
     
     store_id = store['store_id']
@@ -91,14 +81,14 @@ def manage_menu(store_name):
     return render_template('list/store_detail.html', store=store, images=images, menus=menus)
 
 # 이미지 수정 페이지
-@list_bp.route('/<store_name>/image', methods=['GET', 'POST'])
+@list_bp.route('/<store_name>/image', methods=['POST'])
 def manage_images(store_name):
     image_dao = ImageDAO()
     store = StoreDAO().get_store_by_name(store_name)
     
     # store가 None인 경우 처리
     if store is None:
-        flash(f"{store_name}에 해당하는 가게를 찾을 수 없습니다.")
+        # flash(f"{store_name}에 해당하는 가게를 찾을 수 없습니다.")
         return redirect('/home')
     
     store_id = store['store_id']
@@ -146,8 +136,9 @@ def manage_images(store_name):
     
     # 이미지 경로 처리
     images = image_dao.get_images_by_store_id(store_id)
+    
     # 이미지를 images/<store_id>/<image_name> 형식으로 처리
     for image in images:
         image['path'] = f'images/{store_id}/{image["path"].split("/")[1]}'
     
-    return render_template('list/store_detail.html', store=store, images=images)
+    return redirect(url_for('list.manage_menu', store_name=store['name']))
