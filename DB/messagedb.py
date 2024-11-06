@@ -29,8 +29,7 @@ class MessageDAO:
                     'message_id': row[0], 
                     'user_id': row[1], 
                     'name': row[2],
-                    'contents': row[3],
-                    'timestamp': row[4].isoformat() if isinstance(row[4], datetime) else row[4].strftime('%Y-%m-%d %H:%M:%S') if row[4] else None
+                    'contents': row[3]
                 }
                 ret.append(temp)
         except Exception as e:

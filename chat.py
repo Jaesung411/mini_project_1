@@ -20,13 +20,14 @@ def on_join(data):
 @socketio.on('message')  # 클라이언트의 메시지 전송 요청 처리 이벤트
 def handle_message(data):
     room = 'chatroom'
+    user_id = session['userInfo']['userId']
     name = session['userInfo']['nickname']
     contents = data['contents']
     timestamp = datetime.now()
 
     # 데이터베이스에 메시지 저장
     message_dao.insert_message(
-        user_id=data['user_id'],
+        user_id=user_id,
         name=name,
         contents=contents,
         timestamp=timestamp
@@ -47,18 +48,11 @@ def handle_leave(data):
 @socketio.on('get_messages')  # 이전 메시지 요청 이벤트
 def get_messages():
     room = 'chatroom'
-    messages = message_dao.get_messages()  # 모든 메시지 조회
-    message_list = [
-        {
-            "user_id": msg['user_id'],
-            "name": msg['name'],
-            "contents": msg['contents'],
-            "timestamp": msg['timestamp']
-        } for msg in messages
-    ]
-
-    print(f"메시지 수 : {len(message_list)}")
-    send(message_list, room=room)  # 클라이언트에 메시지 전송
+    messages = message_dao.get_messages()[:10]
+    for message in messages:
+        name = message['name']
+        contents = message['contents']
+        socketio.emit('get_messages', f"{name}: {contents}", room=room)
 
 @socketio.on('update_message')  # 메시지 업데이트 이벤트
 def update_message(data):

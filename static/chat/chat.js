@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     const socket = io();  // 소켓 연결
-    const username = "DefaultUser";  // 사용자 이름을 고정하여 사용
     const chatBox = document.getElementById("messages");
     const messageForm = document.getElementById("message-form");
     const messageInput = document.getElementById("message-input");
@@ -20,6 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // 메시지 수신 이벤트
     socket.on('message', (msg) => {
         console.log("Message received from server:", msg);
+        displayMessage(msg);
+    });
+
+    socket.on('get_messages', (msg) => {
+        console.log("Previous", msg);
         displayMessage(msg);
     });
 
@@ -43,9 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (messageContent) {
             // 메시지 전송
             socket.emit('message', {
-                name: username,
                 contents: messageContent,
-                user_id: 1  // 임시 사용자
             });
             messageInput.value = "";  // 입력 필드 초기화
         }
