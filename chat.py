@@ -45,15 +45,6 @@ def handle_leave(data):
     print(f"{name} 퇴장 완료")
     send(f"{name} has left the room.", room=room)
 
-@socketio.on('get_messages')  # 이전 메시지 요청 이벤트
-def get_messages():
-    room = 'chatroom'
-    messages = message_dao.get_messages()[:10]
-    for message in messages:
-        name = message['name']
-        contents = message['contents']
-        socketio.emit('get_messages', f"{name}: {contents}", room=room)
-
 @socketio.on('update_message')  # 메시지 업데이트 이벤트
 def update_message(data):
     message_id = data['message_id']
