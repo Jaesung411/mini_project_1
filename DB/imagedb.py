@@ -80,7 +80,7 @@ class ImageDAO:
     # update
     def update_image(self, image_id, store_id, path):
         cursor = DBConnect.get_db().cursor()
-        sql_update = 'update image set image_id=%s, store_id=%s'
+        sql_update = 'update image set store_id=%s where image_id=%s'
         ret_cnt = cursor.execute(sql_update, (image_id, store_id))
         DBConnect.get_db().close()
         return f'update OK : {ret_cnt}'

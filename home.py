@@ -16,9 +16,9 @@ from DB.postdb import *
 import logging
 import logging.config 
 
-# 로깅 설정
-logging.config.fileConfig('logging.conf')
-logger = logging.getLogger(__name__)
+# # 로깅 설정
+# logging.config.fileConfig('logging.conf')
+# logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 app.secret_key='1234'
