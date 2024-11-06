@@ -22,11 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         displayMessage(msg);
     });
 
-    socket.on('get_messages', (msg) => {
-        console.log("Previous", msg);
-        displayMessage(msg);
-    });
-
     // 메시지 표시 함수
     function displayMessage(message) {
         if (typeof message !== 'string') {
