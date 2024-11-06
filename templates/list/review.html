@@ -102,19 +102,19 @@
         <ul class="pagination justify-content-center">
             {% if page > 1 %}
             <li class="page-item">
-                <a class="page-link" href="{{ url_for('store_detail', store_name=store['name'], page=page-1) }}">이전</a>
+                <a class="page-link" href="{{ url_for('list.store_detail', store_name=store['name'], page=page-1) }}">이전</a>
             </li>
             {% endif %}
             
             {% for p in range(1, total_pages + 1) %}
             <li class="page-item {% if p == page %}active{% endif %}">
-                <a class="page-link" href="{{ url_for('store_detail', store_name=store['name'], page=p) }}">{{ p }}</a>
+                <a class="page-link" href="{{ url_for('list.store_detail', store_name=store['name'], page=p) }}">{{ p }}</a>
             </li>
             {% endfor %}
             
             {% if page < total_pages %}
             <li class="page-item">
-                <a class="page-link" href="{{ url_for('store_detail', store_name=store['name'], page=page+1) }}">다음</a>
+                <a class="page-link" href="{{ url_for('list.store_detail', store_name=store['name'], page=page+1) }}">다음</a>
             </li>
             {% endif %}
         </ul>

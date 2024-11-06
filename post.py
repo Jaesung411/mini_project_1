@@ -1,5 +1,5 @@
 from flask import *
-from postdb import *
+from DB.postdb import *
 from DB.storedb import *
 from DB.menudb import *
 from DB.imagedb import *

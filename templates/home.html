@@ -34,7 +34,7 @@
                             <p class="card-text">{{store['rate']}}</p>
                             <a href="/{{ store['name'] }}" class="btn btn-primary">리뷰 보기</a>
                             {%if session['userInfo']['role'] == '0'%}
-                            <a href="/{{ store['name'] }}" class="btn btn-danger">가게 삭제</a>
+                                <a href="/{{ store['name'] }}/detail" class="btn btn-danger">상세 관리</a>
                             {%endif%}
                         </div>
                     </div>

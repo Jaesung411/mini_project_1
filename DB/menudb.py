@@ -43,13 +43,14 @@ class MenuDAO:
     def get_menus_by_store_id(self, store_id):
         ret = []
         cursor = DBConnect.get_db().cursor()
-        sql_select = 'SELECT menu_name, price FROM menu WHERE store_id = %s'
+        sql_select = 'SELECT menu_name, price, menu_id FROM menu WHERE store_id = %s'
         cursor.execute(sql_select, (store_id,))
         rows = cursor.fetchall()
         for row in rows:
             ret.append({
                 'menu_name': row[0],
-                'price': row[1]
+                'price': row[1],
+                'menu_id':row[2]
             })
         return ret
     
@@ -64,8 +65,8 @@ class MenuDAO:
     # update
     def update_menu(self, menu_id, store_id, menu_name, price):
         cursor = DBConnect.get_db().cursor()
-        sql_update = 'update store set menu_id=%s, store_id=%s, menu_name=%s, price=%s'
-        ret_cnt = cursor.execute(sql_update, (menu_id, store_id, menu_name, price))
+        sql_update = 'update menu set store_id=%s, menu_name=%s, price=%s where menu_id=%s'
+        ret_cnt = cursor.execute(sql_update, ( store_id, menu_name, price, menu_id))
         DBConnect.get_db().close()
         return f'update OK : {ret_cnt}'
     
@@ -77,11 +78,11 @@ class MenuDAO:
         DBConnect.get_db().close()
         return f'delete OK : {ret_cnt}'
     
-if __name__=='__main__':
-    # print (DBConnect.get_db())
-    # print (StoreDAO().insert_menu(22, '5', '고로아케', '10,000',))
-    # print (StoreDAO().update_menu(22, '5', '타코야끼', '10,000',))
-    # print (StoreDAO().delete_menu(22))
+    # 추가한 것
+    def get_max_menu_id(self):
+        cursor = DBConnect.get_db().cursor()
+        sql_select = 'SELECT MAX(menu_id) FROM menu'
+        cursor.execute(sql_select)
+        result = cursor.fetchone()
+        return result[0] if result and result[0] is not None else 0  # None 체크 추가
     
-    menu_list = MenuDAO().get_menus()
-    print(menu_list)
